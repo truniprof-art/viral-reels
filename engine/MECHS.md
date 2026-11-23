@@ -54,3 +54,4 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 - belts — V belts, crush.
 - blender — round jar, 4-blade spinning knife SLICES objects (new cause).
 - gates — bucket elevators lift objects, they fall through glowing x2 gates (new cause, 3 gates switch on at 0/12/20 s).
+- wheel — big paddle wheel in a round trough scoops shapes up its rising side through a red x2 laser line (split on laser).

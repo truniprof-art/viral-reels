@@ -22,3 +22,8 @@ In 3 months, build a unique account that attracts advertisers. Learn from and ge
 - Daily (23:00 run): top posts → write the variation ideas into ideas.md (same hook in a new machine/shape/tank, never a repost).
 - Weekly (Monday 23:00 run): trend scan with WebSearch (viral satisfying / simulation / marble-race / "balls multiply" formats on Reels and Shorts). Note 3 ideas in ideas.md with the source, adapt the *mechanic or hook*, never copy footage.
 - Daily 15:47 run: build the unique video of the day, preferably from the best idea in ideas.md.
+
+## Status 2026-11-23 (week 1, day 1)
+- IG: 6 followers; press reels hit 25.6k and 14.4k views (first breakout), ER ~0.6–1.2% (likes only, 0 comments/shares). YouTube: 1 subscriber, 0 videos — uploads rate-limited.
+- Mechanisms: 6 (press, crusher, belts, blender, gates, wheel) of the ≥10 target for month 1.
+- This week: double down on press through VARIATIONS (funnel tank, two-floor cascade), keep shapes rotating; push comment bait (0 comments so far) with guess-the-number hooks; get YouTube uploads working.

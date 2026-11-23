@@ -25,5 +25,11 @@
   "name": "gates",
   "min_final": 500,
   "env": {}
+ },
+ "wheel": {
+  "file": "wheel.py",
+  "name": "wheel",
+  "min_final": 500,
+  "env": {}
  }
 }
