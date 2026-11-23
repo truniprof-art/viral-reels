@@ -5,6 +5,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 kind, out = sys.argv[1], os.path.abspath(sys.argv[2])
 master = int(sys.argv[3]) if len(sys.argv) > 3 else random.randrange(10**9)
 rnd = random.Random(master)
+MECHS = json.load(open(os.path.join(HERE, "mechs.json")))          # base.py-engine mechanisms
+if kind == "auto":                                                   # weighted pick, never the same kind twice in a row
+    W = json.load(open(os.path.join(HERE, "..", "rotation.json")))
+    last = ""
+    pc = os.path.join(HERE, "..", "posts.csv")
+    if os.path.exists(pc):
+        rows = [l.split(",") for l in open(pc).read().strip().splitlines()[1:]]
+        if rows: last = rows[-1][1]
+    opts = {k: w for k, w in W.items() if w > 0 and k != last} or W
+    kind = rnd.choices(list(opts), weights=list(opts.values()))[0]
 WORK = f"/tmp/vr_{kind}_{master}"
 os.makedirs(WORK, exist_ok=True)
 env = dict(os.environ, WORK=WORK, HUE=str(rnd.choice([0, 0, 40, 80, 140, 200, 260, 310])), PYTHONDONTWRITEBYTECODE="1")
@@ -63,19 +73,18 @@ elif kind == "crusher":
     assert all(p.wait() == 0 for p in ps)
     mux([f"{WORK}/rlp0.mp4", f"{WORK}/rlp1.mp4"], f"{WORK}/rl_audio.wav")
 
-elif kind == "belts":
-    B = dict(SIGN="1", NV="3", WMAX="100", PTH="35", S0="5", S1="9000", SE="2.4", ACT="13,0,17")
-    env.update(B)
-    o = subprocess.run(PY + ["belts.py", "search"] + [str(x) for x in seeds[:8]], cwd=HERE, env=env, check=True, capture_output=True, text=True).stdout
+elif kind in MECHS:
+    m = MECHS[kind]; env.update(m.get("env", {}))
+    o = subprocess.run(PY + [m["file"], "search"] + [str(x) for x in seeds[:8]], cwd=HERE, env=env, check=True, capture_output=True, text=True).stdout
     best = seeds[0]
     for line in o.strip().splitlines():
         sd, rest = line.split(" ", 1); c = json.loads(rest)
-        print("belts", sd, c, flush=True)
-        if c[-1] >= 600 and c[0] <= 3 and c[1] <= 10: best = int(sd); break
+        print(kind, sd, c, flush=True)
+        if c[-1] >= m.get("min_final", 500) and c[0] <= 3 and c[1] <= 12: best = int(sd); break
     info.update(seed=best)
-    sh(PY + ["belts.py", "rec", str(best)])
-    sh(PY + ["belts.py", "all"])
-    os.replace(f"{WORK}/belts.mp4", out)
+    sh(PY + [m["file"], "rec", str(best)])
+    sh(PY + [m["file"], "all"])
+    os.replace(f"{WORK}/{m['name']}.mp4", out)
 else:
     sys.exit("unknown kind")
 
