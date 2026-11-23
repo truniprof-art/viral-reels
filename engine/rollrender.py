@@ -1,6 +1,7 @@
 import os as _os; WORK = _os.environ.get("WORK", "/tmp/vr"); _os.makedirs(WORK, exist_ok=True)
 import cairo, math, sys, os, subprocess, wave
 import numpy as np
+import style as ST_
 os.environ.update(ZX="24", ZY="18", S1="50", OPEN="17,17,0,12,12")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from rollsim import BX0, BX1, BY0, RR, GAP, ROLL_Y, NPAIR, PAIRS, PAIR_W, OPEN, BR, T_ZERO, T_END, FPS, W, H, PINCH_Y, roller_speed
@@ -89,7 +90,7 @@ def text(ctx, s, x, y, size, rgba, weight=cairo.FONT_WEIGHT_NORMAL, track=0):
 
 def draw(ctx, f):
     t = f / FPS; zt = t - T_ZERO
-    ctx.set_source_rgb(.075, .08, .09); ctx.paint()
+    ctx.set_source_rgb(*ST_.BG); ctx.paint()
     sh = 18 * math.exp(-zt * 5) * math.sin(zt * 80) if 0 <= zt < 1 else 0
     zoom = 1 + .4 * (1 - math.exp(-zt * 2)) if zt > 0 else 1
     ctx.save(); ctx.translate(540 + sh, 1150); ctx.scale(zoom, zoom); ctx.translate(-540, -1150)
@@ -99,8 +100,7 @@ def draw(ctx, f):
     for i in alive:
         x, y = pf[i]; age = f - BORN[i]
         glow = max(0.0, 1 - age / 8) if BORN[i] > 0 and age >= 0 else 0.0
-        s = sprite(COLS[i], glow); o = s.get_width() / 2
-        ctx.set_source_surface(s, x - o, y - o); ctx.paint()
+        ST_.put(ctx, COLS[i], glow, x, y, i, BR)
     # squeeze FX: the ball is pinched between the rollers (tall & thin), then pops
     if len(CR):
         for row in CR[(CR[:, 0] > t - .35) & (CR[:, 0] <= t)]:
@@ -123,12 +123,12 @@ def draw(ctx, f):
     if zt <= 0:
         rem = T_ZERO - t; sec = max(0, math.ceil(rem - 1e-6)); last = sec <= 5
         frac = rem % 1; pulse = 1 + (.08 if last else .02) * math.exp(-(1 - frac) * 10)
-        col = (1, .32, .32, 1) if last else (1, 1, 1, .92)
+        col = (1, .32, .32, 1) if last else ST_.ink(.92)
         ctx.save(); ctx.translate(540, 250); ctx.scale(pulse, pulse); text(ctx, f"0:{sec:02d}", 0, 0, 120, col, cairo.FONT_WEIGHT_NORMAL, 4); ctx.restore()
-        bw = 360; ctx.set_source_rgba(1, 1, 1, .12); ctx.rectangle(540 - bw / 2, 292, bw, 3); ctx.fill()
+        bw = 360; ctx.set_source_rgba(*ST_.ink(.12)); ctx.rectangle(540 - bw / 2, 292, bw, 3); ctx.fill()
         ctx.set_source_rgba(*col[:3], .9); ctx.rectangle(540 - bw / 2, 292, bw * rem / T_ZERO, 3); ctx.fill()
-        text(ctx, f"{int(COUNT[f])}", 540, 410, 64, (1, 1, 1, .9), cairo.FONT_WEIGHT_BOLD, 2)
-        text(ctx, "КУЛЬОК", 540, 452, 24, (1, 1, 1, .4), cairo.FONT_WEIGHT_NORMAL, 8)
+        text(ctx, f"{int(COUNT[f])}", 540, 410, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
+        text(ctx, ST_.LABEL, 540, 452, 24, ST_.ink(.4), cairo.FONT_WEIGHT_NORMAL, 8)
     else:
         text(ctx, "0:00", 540, 250, 120, (1, .32, .32, max(0, 1 - zt / .8)), cairo.FONT_WEIGHT_NORMAL, 4)
     if t > T_END - .4: ctx.set_source_rgba(0, 0, 0, (t - (T_END - .4)) / .4); ctx.paint()

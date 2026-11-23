@@ -1,4 +1,29 @@
 {
-  "belts": {"file": "belts.py", "name": "belts", "min_final": 600,
-            "env": {"SIGN": "1", "NV": "3", "WMAX": "100", "PTH": "35", "S0": "5", "S1": "9000", "SE": "2.4", "ACT": "13,0,17"}}
+ "belts": {
+  "file": "belts.py",
+  "name": "belts",
+  "min_final": 600,
+  "env": {
+   "SIGN": "1",
+   "NV": "3",
+   "WMAX": "100",
+   "PTH": "35",
+   "S0": "5",
+   "S1": "9000",
+   "SE": "2.4",
+   "ACT": "13,0,17"
+  }
+ },
+ "blender": {
+  "file": "blender.py",
+  "name": "blender",
+  "min_final": 500,
+  "env": {}
+ },
+ "gates": {
+  "file": "gates.py",
+  "name": "gates",
+  "min_final": 500,
+  "env": {}
+ }
 }

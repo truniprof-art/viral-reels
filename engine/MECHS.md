@@ -1,9 +1,16 @@
 # How to add a new mechanism
 
-Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs 0:30 → 0:00, with a ball counter. Balls multiply ONLY when a mechanism crushes them: one ball is removed and two new balls spawn above it. At 0:00 the tank explodes.
+Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs 0:30 → 0:00, with an object counter. Objects multiply when the video's mechanism acts on them (crush, slice, x2 gate…): one is removed and two new ones spawn. At 0:00 the tank explodes.
 
 ## Rules from the owner (do not break)
-- Balls multiply only by a clear, visible crush. Touching never multiplies a ball.
+- VARIETY FIRST (owner, 2026-11-23): never post near-identical videos. Every video differs in mechanism and/or look:
+  object shape (circle, triangle, square, ring, hex nut, star, pill), background, tank shape, palette.
+  make.py picks a style (`STYLE` env, see style.py) that avoids the shapes of the last 4 posts and the backgrounds of the last 2.
+  A hit format is a signal to make *new variations* of it, not to repost it.
+- ONE FULLY UNIQUE VIDEO PER DAY: the 15:47 (Kyiv) run builds something never posted before — new mechanism,
+  new reason to multiply, new tank shape or level layout — not just a re-skin.
+- Reasons to multiply may vary (crush, slice by a blade, pass through a x2 gate, split on a spike/prism, etc.), but each must be
+  clear and visible, and there is ONE rule per video. Plain random touching never multiplies an object.
 - One consistent rule per video. Rotation never reverses direction.
 - Start very slow (1–3 balls at 5 s, ≤12 at 10 s). Growth then explodes, and the tank is full at 0:00 (≥500 balls).
 - 2D only, flat matte style (no gloss), no slow-mo.
@@ -34,3 +41,16 @@ To make the start slow, use pressure accumulation (see `PTH` in belts.py) and de
 4. Add an entry to `mechs.json`: `{"file", "name", "min_final", "env"}`.
 5. Add it to `../rotation.json` with weight 1.
 6. Run `python3 -B make.py <name> ../out/t.mp4` once, check it, then commit.
+
+## Style layer
+`style.py` reads `STYLE` (JSON `{"shape","bg"}`) and is used by every renderer: `ST_.put(ctx, col, glow, x, y, i, BR)` draws an object,
+`ST_.BG` is the background, `ST_.LABEL` the counter word, `ST_.ink(a)` the text colour. New renderers must use it too.
+Physics stays circular. Force a style with `SHAPE=tri BG=sand python3 -B make.py ...`. posts.csv has a `style` column (`shape:bg`).
+A mech without the rectangular tank sets `tank_walls = False`, builds its own walls and may define `fix_xy(x, y)` to keep spawns inside.
+
+## Mechanisms so far
+- press (presssim2/pressrender3) — hydraulic press, crush.
+- crusher (rollsim/rollrender) — roller pairs, crush.
+- belts — V belts, crush.
+- blender — round jar, 4-blade spinning knife SLICES objects (new cause).
+- gates — bucket elevators lift objects, they fall through glowing x2 gates (new cause, 3 gates switch on at 0/12/20 s).

@@ -1,6 +1,7 @@
 import os as _os; WORK = _os.environ.get("WORK", "/tmp/vr"); _os.makedirs(WORK, exist_ok=True)
 import cairo, math, sys, os, subprocess, wave
 import numpy as np
+import style as ST_
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from presssim2 import BX0, BX1, BY0, BY1, ANVIL_Y, PX0, PX1, SLOPE_Y, BR, T_ZERO, T_END, FPS, W, H, HEAD_H
 
@@ -92,7 +93,7 @@ def text(ctx, s, x, y, size, rgba, weight=cairo.FONT_WEIGHT_NORMAL, track=0):
 def draw(ctx, fo):
     t = float(TMAP[fo]); f = int(min(NF - 1, round(t * FPS))); zt = t - T_ZERO
     pfi, f0i = interp_pos(t)
-    ctx.set_source_rgb(.075, .08, .09); ctx.paint()
+    ctx.set_source_rgb(*ST_.BG); ctx.paint()
     # camera shake on each slam impact
     sh = 0.0
     for s in SLAMS:
@@ -116,8 +117,7 @@ def draw(ctx, fo):
                 u_ = k / 6; tx = x + (px_ - x) * u_; ty = y + (py_ - y) * u_
                 ctx.arc(tx, ty, BR * (1 - u_ * .6), 0, 2 * math.pi); ctx.set_source_rgba(c_[0], c_[1], c_[2], .22 * (1 - u_)); ctx.fill()
         age = f - BORN[i]; glow = max(0.0, 1 - age / 8) if BORN[i] > 0 and age >= 0 else 0.0
-        s = sprite(COLS[i], round(glow, 1)); o = s.get_width() / 2
-        ctx.set_source_surface(s, x - o, y - o); ctx.paint()
+        ST_.put(ctx, COLS[i], round(glow, 1), x, y, i, BR)
     if zt <= 0:
         draw_press(ctx, float(HEADY[f]))
     else:
@@ -154,13 +154,13 @@ def draw(ctx, fo):
     if zt <= 0:
         rem = T_ZERO - t; sec = max(0, math.ceil(rem - 1e-6)); last = sec <= 5
         frac = rem % 1; pulse = 1 + (0.08 if last else 0.025) * math.exp(-(1 - frac) * 10)
-        col = (1, .32, .32, 1) if last else (1, 1, 1, .92)
+        col = (1, .32, .32, 1) if last else ST_.ink(.92)
         ctx.save(); ctx.translate(540, 300); ctx.scale(pulse, pulse); text(ctx, f"0:{sec:02d}", 0, 0, 120, col, cairo.FONT_WEIGHT_NORMAL, 4); ctx.restore()
-        bw = 360; ctx.set_source_rgba(1, 1, 1, .12); ctx.rectangle(540 - bw / 2, 342, bw, 3); ctx.fill()
+        bw = 360; ctx.set_source_rgba(*ST_.ink(.12)); ctx.rectangle(540 - bw / 2, 342, bw, 3); ctx.fill()
         ctx.set_source_rgba(*col[:3], .9); ctx.rectangle(540 - bw / 2, 342, bw * rem / T_ZERO, 3); ctx.fill()
         n = int(np.sum(~np.isnan(P[f, :, 0]))) + (int(np.sum((CR[:, 0] <= t) & (CR[:, 0] > t - 0.14))) if len(CR) else 0)
-        text(ctx, f"{n}", 540, 470, 64, (1, 1, 1, .9), cairo.FONT_WEIGHT_BOLD, 2)
-        text(ctx, "КУЛЬОК", 540, 512, 24, (1, 1, 1, .4), cairo.FONT_WEIGHT_NORMAL, 8)
+        text(ctx, f"{n}", 540, 470, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
+        text(ctx, ST_.LABEL, 540, 512, 24, ST_.ink(.4), cairo.FONT_WEIGHT_NORMAL, 8)
     else:
         text(ctx, "0:00", 540, 300, 120, (1, .32, .32, max(0, 1 - zt / .8)), cairo.FONT_WEIGHT_NORMAL, 4)
     sm_ = slow_amount(t)

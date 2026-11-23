@@ -11,13 +11,24 @@ if kind == "auto":                                                   # weighted 
     last = ""
     pc = os.path.join(HERE, "..", "posts.csv")
     if os.path.exists(pc):
-        rows = [l.split(",") for l in open(pc).read().strip().splitlines()[1:]]
-        if rows: last = rows[-1][1]
+        import csv
+        rows = list(csv.DictReader(open(pc)))
+        if rows: last = rows[-1]["kind"]
     opts = {k: w for k, w in W.items() if w > 0 and k != last} or W
     kind = rnd.choices(list(opts), weights=list(opts.values()))[0]
+# ---- per-video style: shape + background never repeat the recent posts ----
+import style as _st
+recent = []
+_pc = os.path.join(HERE, "..", "posts.csv")
+if os.path.exists(_pc):
+    import csv
+    recent = [r.get("style", "") for r in csv.DictReader(open(_pc))][-6:]
+_shapes = [x for x in _st.SHAPES if all(not r.startswith(x + ":") for r in recent[-4:])] or _st.SHAPES
+_bgs = [x for x in _st.BG_NAMES if all(not r.endswith(":" + x) for r in recent[-2:])] or _st.BG_NAMES
+STYLE = {"shape": os.environ.get("SHAPE") or rnd.choice(_shapes), "bg": os.environ.get("BG") or rnd.choice(_bgs)}
 WORK = f"/tmp/vr_{kind}_{master}"
 os.makedirs(WORK, exist_ok=True)
-env = dict(os.environ, WORK=WORK, HUE=str(rnd.choice([0, 0, 40, 80, 140, 200, 260, 310])), PYTHONDONTWRITEBYTECODE="1")
+env = dict(os.environ, WORK=WORK, HUE=str(rnd.choice([0, 0, 40, 80, 140, 200, 260, 310])), PYTHONDONTWRITEBYTECODE="1", STYLE=json.dumps(STYLE))
 PY = [sys.executable, "-B"]
 
 def sh(args, **kw):
@@ -42,7 +53,7 @@ def pick(test, seeds):
     return seeds[0]
 
 seeds = [rnd.randrange(1, 100000) for _ in range(12)]
-info = dict(kind=kind, master=master, hue=env["HUE"])
+info = dict(kind=kind, master=master, hue=env["HUE"], style=f"{STYLE['shape']}:{STYLE['bg']}")
 
 if kind == "press":
     cfg = rnd.choice(["2.2,1.5,0.7", "2.0,1.4,0.65", "2.4,1.6,0.75"])
