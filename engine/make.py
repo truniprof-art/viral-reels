@@ -6,15 +6,15 @@ kind, out = sys.argv[1], os.path.abspath(sys.argv[2])
 master = int(sys.argv[3]) if len(sys.argv) > 3 else random.randrange(10**9)
 rnd = random.Random(master)
 MECHS = json.load(open(os.path.join(HERE, "mechs.json")))          # base.py-engine mechanisms
-if kind == "auto":                                                   # weighted pick, never the same kind twice in a row
+if kind == "auto":                                                   # weighted pick, never a kind used in the last 2 posts
     W = json.load(open(os.path.join(HERE, "..", "rotation.json")))
-    last = ""
+    last = []
     pc = os.path.join(HERE, "..", "posts.csv")
     if os.path.exists(pc):
         import csv
         rows = list(csv.DictReader(open(pc)))
-        if rows: last = rows[-1]["kind"]
-    opts = {k: w for k, w in W.items() if w > 0 and k != last} or W
+        last = [r["kind"] for r in rows[-2:]]
+    opts = {k: w for k, w in W.items() if w > 0 and k not in last} or {k: w for k, w in W.items() if w > 0 and k not in last[-1:]} or W
     kind = rnd.choices(list(opts), weights=list(opts.values()))[0]
 # ---- per-video style: shape + background never repeat the recent posts ----
 import style as _st
