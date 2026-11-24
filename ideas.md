@@ -1,5 +1,12 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-24 — reference from Kolya (gravityplay.lab reel "1 BALL x2 VS 1,000,000")
+What it is: dark navy bg, two tall columns side by side (gold vs cyan outline), title "1 BALL x2 VS 1,000,000 — WHO BREAKS THROUGH FIRST?". Each column has 30 breakable floors with HP numbers that grow downward (7, 17, 27 … 23M). Left: a pile of 1,000,000 that NEVER CHANGES chews through floors fast. Right: 1 ball that x2 EACH FLOOR it breaks — crawls at first (1, 2, 4, 8…), then explodes (4096 -> 262k -> 1.07B) and overtakes at the last second. End card "1 BALL x2 WINS! 1,000,000 was only 0.3% away. Did you pick the right side?". ~32 s, countdown top-right, floor counter "FLOOR n/30" per side.
+Why it works: (1) betting in the first second — the title IS a question, viewer instantly picks a side; (2) linear vs exponential is counter-intuitive, so the underdog looks hopeless for 20 s (curiosity gap + underdog); (3) "FLOOR n/30" progress bars make the race readable at a glance; (4) photo finish ("only 0.3% away") = tension/release + comments "I knew it"; (5) end question drives comments.
+Variations for us (adapt the betting/underdog race idea, never copy the floors/columns/look/wording):
+- Machine race: two of OUR tanks side by side — left a big pile that is only crushed (no growth), right ONE ball that doubles under the press; first to fill its tank / reach 500 wins. Hook "Left or right? Pick before 0:03 👇". Our flat matte look, our countdown.
+- Shape duel: triangles x2 per slice (blender) vs squares x3 per press but slower start — which rule wins? Teaches "bigger multiplier vs faster machine", comment bait.
+- Underdog descent in a round/funnel tank: one ball drops through rotating rings with gaps; each ring it passes x2, while a crowd of 1000 falls through without growing. Photo-finish ending, honest margin shown.
 
 
 ## 2026-11-24 — experiment ideas (psychology-driven, for the 15:47 slot)
