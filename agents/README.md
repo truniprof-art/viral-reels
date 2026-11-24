@@ -16,11 +16,12 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 1. The main session (the **Director**) first collects the data (step 6a–6b of the task) and writes it to
    `/tmp/council/data.md`: per-post table (both platforms) + followers + today's captions/titles, last 3 entries of decisions.md.
    It also extracts frames 0.5, 1.5, 3, 10, 20, 32 s of today's reels from the media branch to `/tmp/council/frames/<post>_<t>.png`.
-2. It spawns all advisers in this folder IN PARALLEL (Agent tool, general-purpose), each prompt = the role file below + paths to data.md/frames
+2. It spawns all advisers in this folder (every *.md except README.md and recruiter.md) IN PARALLEL (Agent tool, general-purpose), each prompt = the role file below + paths to data.md/frames
    + repo path. Advisers only read and research; they never post, push or edit the repo.
 3. Each adviser returns ≤250 words: (a) the #1 problem it sees, with evidence (numbers/frames/links); (b) ONE radical decision;
    (c) the metric that would prove it right, and by when.
 4. The Director runs the **devil's advocate** check itself: for each proposal, "what if this is wrong / what does it break?"
+4b. (see step 6)
 5. The Director names ONE main problem of the day and takes 1–2 radical decisions (see guardrails), implements them,
    logs them in `../decisions.md`, and sends Kolya a push with problem + decisions.
 
@@ -31,6 +32,7 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 - `advertiser.md` — a brand manager judging if this account is sponsorable and what blocks it.
 - `growth.md` — turns viewers into followers (hooks to subscribe, series, CTAs, comment replies; honest clickbait only).
 - `money.md` — monetization chief: revenue paths, thresholds, fastest honest route to the first money.
+- `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.
 - `geo.md` — audience countries/cities/ages, best posting hours, market focus.
 The Director may add, rewrite or retire advisers (new file here + note in decisions.md) when the account needs a different view.
 
@@ -48,3 +50,12 @@ their count (3–8/day) and their content.
   keep / extend / roll back, based on the numbers. Don't roll back before its check date unless it clearly broke something.
 - Engine changes: render with make.py, check frames (counter, shapes, mechanism visible, ≥500 at 0:00), only then commit.
   If the render fails, revert and log it.
+
+## Recruiter step (every night, after step 5)
+- `recruiter.md` is NOT in the parallel batch. After the decisions, the Director spawns the recruiter with all tonight's adviser
+  reports, the decisions, decisions.md and the agents/ file list.
+- The Director applies its verdict: writes new/rewritten files into agents/, moves retired ones to agents/retired/ (with a one-line
+  reason at the top), and logs it in decisions.md ("council change"). Max 2 hires per night; money.md and recruiter.md stay.
+- A new adviser is CONNECTED immediately: if time allows, the Director runs it the same night on the same data and considers its
+  advice; otherwise it joins the parallel batch from the next night (every *.md in agents/ except README and recruiter is an adviser).
+- Mention council changes in the nightly push to Kolya.
