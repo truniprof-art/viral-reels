@@ -30,3 +30,19 @@ In 3 months, build a unique account that attracts advertisers. Learn from and ge
 
 ## Rule update 2026-11-24 (Kolya)
 Mechanisms must not repeat. If a format hits, make something SIMILAR (a variation), never the same build again. Implemented: make.py picks a structural variant per post and logs it in variants.log; each hit format should get new variants added over time.
+
+## Daily EXPERIMENT slot — 15:47 run (Kolya, 2026-11-24)
+One video per day is ABSOLUTELY NEW content: not just a new mechanism, it may break our series format (new concept, new rule, new kind of ending, new interaction). Think about human psychology, form a hypothesis, try it, measure it.
+Before building, write in experiments.md: idea, which psychological trigger it tests, what metric should move. At the 23:00 run, fill in the result (views, skip, avg watch, comments, shares) and the verdict: keep / turn into a series / drop.
+Psychology levers to test (pick 1–2 per video, change the lever often):
+- Curiosity gap: viewer can't predict the outcome ("will it overflow / escape / win?"). The answer only at the end means watch-through.
+- Prediction & betting: ask for a guess or a side in the first 2 s (two colours race, "pick left or right"). Comments = engagement.
+- Tension then release: slow build-up, near-miss moments, one huge payoff (explosion, full tank, last ball drops).
+- Pattern interrupt: something unexpected mid-video (rule flips, a new machine switches on, the tank breaks), which resets attention at ~10–15 s.
+- Completion / order: chaos turning into perfect order (sorting by colour, filling a shape exactly, a picture forming from balls).
+- Ownership & identity: "your colour", birth-month or zodiac lanes, "comment your number". People share what is about them.
+- Rewatch loop: the last frame flows into the first, so the video plays again unnoticed (more watch time).
+- ASMR / sensory: clean rhythmic sound, satisfying clicks and pops synced to events.
+- Underdog: one small ball vs the machine; people root for it.
+- Social proof & challenge: "only 3% watch to the end", "can you count them?" (honest, never fake stats).
+Rules still apply: 2D flat matte, brand-safe, never copy someone else's video or look, ~30 s.

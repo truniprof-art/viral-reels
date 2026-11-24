@@ -11,7 +11,7 @@ Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs
   *variation*: make.py picks a structural variant (VARIANTS in make.py: number of funnels/arms/paddles/gates, direction, size, press config)
   not used in this kind's recent posts (log: ../variants.log, written by make.py — commit it). If a kind hits, add NEW variants of it
   (test with `search`, need ≤3 at 5 s, ≤12 at 10 s, ≥500 final) instead of reposting. Kinds with a single variant (crusher) need new variants.
-- ONE FULLY UNIQUE VIDEO PER DAY: the 15:47 (Kyiv) run builds something never posted before — new mechanism,
+- ONE FULLY UNIQUE VIDEO PER DAY (owner, 2026-11-24: ABSOLUTELY new content, a psychology-driven experiment; see strategy.md 'Daily EXPERIMENT slot' and log it in ../experiments.md): the 15:47 (Kyiv) run builds something never posted before — new mechanism,
   new reason to multiply, new tank shape or level layout — not just a re-skin.
 - Reasons to multiply may vary (crush, slice by a blade, pass through a x2 gate, split on a spike/prism, etc.), but each must be
   clear and visible, and there is ONE rule per video. Plain random touching never multiplies an object.

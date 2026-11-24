@@ -1,6 +1,15 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
 
+
+## 2026-11-24 — experiment ideas (psychology-driven, for the 15:47 slot)
+- Colour race with betting: two colours, each multiplies only on its own side; the leader flips twice (pattern interrupt); hook "Pick a colour before you watch 👇". Lever: prediction + curiosity gap.
+- Picture reveal: balls fill the tank and settle into a simple pixel picture (a heart, a smiley, a number 1-9) only in the last 3 s. Lever: completion + rewatch.
+- Underdog: one tiny ball dodges a machine for 25 s and only multiplies at the very end. Lever: underdog + tension/release.
+- Rule flip at 15 s: the machine reverses its role (from doubling to halving), then the last 5 s doubling comes back for the explosion. Lever: pattern interrupt.
+- Perfect loop: the final explosion leaves exactly 1 ball where the video started. Lever: rewatch loop.
+- Sorting machine: a mixed pile is sorted into colour lanes, so chaos turns into order. Lever: completion/order (a fresh niche vs "multiply").
+
 ## 2026-11-24 — reference from Kolya (nexusboxlab reel, https://www.instagram.com/reel/DeulekATWhb/)
 What it is: round white-outline tank on pure black; two long grey arms with folding blades enter from opposite sides, fold shut into a rectangle TRAP around a ball, then SNAP: a shockwave ring + debris, and the ball becomes 4 new balls in a NEW colour (red -> green -> magenta -> blue -> cyan...). Arms keep re-positioning and trapping; ends with the circle packed solid. ~40 s, countdown timer top-right.
 Why it works: (1) 1 ball at 0:00 + a big tool closing on it = instant "what happens?" suspense; (2) the snap has a visible payoff (ring + burst); (3) colour per GENERATION makes the growth readable (you see each wave take over); (4) round tank feels fresh vs rectangles.
