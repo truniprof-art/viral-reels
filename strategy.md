@@ -3,6 +3,9 @@
 ## Platforms
 Instagram Reels + YouTube Shorts (added 2026-11-23). TikTok: hands off, per Kolya.
 
+## MAIN GOAL (Kolya, 2026-11-24, supersedes the line below): MONEY. Carte blanche on tools within the hard limits in agents/README.md.
+Growth, followers and the advertiser-ready account are the means; the night council (money.md) tracks revenue paths and the fastest honest route to the first income.
+
 ## Goal from Kolya
 In 3 months, build a unique account that attracts advertisers. Learn from and get inspired by what goes viral (our posts and the niche), but never repost identical videos.
 
