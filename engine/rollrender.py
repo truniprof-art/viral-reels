@@ -127,11 +127,11 @@ def draw(ctx, f):
         ctx.save(); ctx.translate(540, 250); ctx.scale(pulse, pulse); text(ctx, f"0:{sec:02d}", 0, 0, 120, col, cairo.FONT_WEIGHT_NORMAL, 4); ctx.restore()
         bw = 360; ctx.set_source_rgba(*ST_.ink(.12)); ctx.rectangle(540 - bw / 2, 292, bw, 3); ctx.fill()
         ctx.set_source_rgba(*col[:3], .9); ctx.rectangle(540 - bw / 2, 292, bw * rem / T_ZERO, 3); ctx.fill()
-        text(ctx, f"{int(COUNT[f])}", 540, 410, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
+        ST_.LAST[0] = int(COUNT[f]); text(ctx, f"{int(COUNT[f])}", 540, 410, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
         text(ctx, ST_.LABEL, 540, 452, 24, ST_.ink(.4), cairo.FONT_WEIGHT_NORMAL, 8)
     else:
         text(ctx, "0:00", 540, 250, 120, (1, .32, .32, max(0, 1 - zt / .8)), cairo.FONT_WEIGHT_NORMAL, 4)
-    if t > T_END - .4: ctx.set_source_rgba(0, 0, 0, (t - (T_END - .4)) / .4); ctx.paint()
+    ST_.endcard(ctx, t, T_END, text)
 
 def audio(path):
     sr = 44100; n = int(T_END * sr); y = np.zeros(n)

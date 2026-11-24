@@ -11,9 +11,18 @@ BGS = {"char": (.075, .08, .09), "navy": (.06, .07, .13), "plum": (.10, .06, .11
        "forest": (.05, .09, .08), "sand": (.93, .90, .84), "slate": (.15, .17, .20)}
 BG = BGS.get(S.get("bg", "char"), BGS["char"])
 LIGHT = sum(BG) > 1.5                                   # light background -> dark text
-LABELS = {"circle": "КУЛЬОК", "tri": "ТРИКУТНИКІВ", "square": "КУБИКІВ", "ring": "КІЛЕЦЬ",
-          "hex": "ГАЙОК", "star": "ЗІРОК", "pill": "ПІГУЛОК"}
-LABEL = LABELS.get(SHAPE, "ШТУК")
+# English on-screen text (council 2026-11-24: ~99% of views are global non-followers)
+LABELS = {"circle": "BALLS", "tri": "TRIANGLES", "square": "CUBES", "ring": "RINGS",
+          "hex": "HEX NUTS", "star": "STARS", "pill": "PILLS"}
+LABEL = LABELS.get(SHAPE, "OBJECTS")
+EP = os.environ.get("EP", "")
+if not EP:   # episode number = next row of posts.csv (one data row per published reel)
+    try:
+        import csv as _csv
+        EP = str(sum(1 for _ in _csv.DictReader(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "posts.csv")))) + 1)
+    except Exception:
+        EP = ""
+LAST = [0]          # renderers store the live count here; the end card shows the final one
 SHAPES = list(LABELS)
 BG_NAMES = list(BGS)
 
@@ -63,3 +72,19 @@ def put(ctx, c, glow, x, y, i, BR):
         ctx.set_source_surface(s, x - o, y - o); ctx.paint(); return
     ctx.save(); ctx.translate(x, y); ctx.rotate(x / BR * .8 + i * 1.7)
     ctx.set_source_surface(s, -o, -o); ctx.paint(); ctx.restore()
+
+
+def endcard(ctx, t, T_END, text, dur=1.5):
+    """Council 2026-11-24: replace the black fade with an end card (final count + follow CTA) over the full tank."""
+    t0 = T_END - dur
+    if t <= t0: return
+    a = min(1.0, (t - t0) / .25)
+    ctx.set_source_rgba(*BG, .82 * a); ctx.paint()
+    W = 540
+    if EP: text(ctx, f"EPISODE {EP}", W, 640, 34, ink(.55 * a), cairo.FONT_WEIGHT_BOLD, 8)
+    text(ctx, "FINAL COUNT", W, 760, 40, ink(.7 * a), cairo.FONT_WEIGHT_NORMAL, 8)
+    text(ctx, f"{LAST[0]}", W, 920, 170, ink(a), cairo.FONT_WEIGHT_BOLD, 2)
+    text(ctx, LABEL, W, 1000, 40, ink(.7 * a), cairo.FONT_WEIGHT_NORMAL, 8)
+    text(ctx, "Did you guess it?", W, 1160, 52, ink(.95 * a), cairo.FONT_WEIGHT_BOLD, 0)
+    text(ctx, "A NEW MACHINE EVERY DAY", W, 1300, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)
+    text(ctx, "FOLLOW @REMON_CATS", W, 1360, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)

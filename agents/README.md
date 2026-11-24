@@ -29,7 +29,9 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 - `data-skeptic.md` — finds the bottleneck in the funnel from numbers.
 - `viewer.md` — judges the reels as a cold scroller from frames.
 - `scout.md` — what wins in the niche right now and what we lack.
-- `advertiser.md` — a brand manager judging if this account is sponsorable and what blocks it.
+- `advertiser.md` — RETIRED 2026-11-24 (overlap with growth), see retired/.
+- `experimenter.md` — makes decisions measurable: noise vs signal, test design, stop rules (hired 2026-11-24).
+- `sharer.md` — why Instagram pushes or stops pushing a reel: shares, sends, first hour (hired 2026-11-24).
 - `growth.md` — turns viewers into followers (hooks to subscribe, series, CTAs, comment replies; honest clickbait only).
 - `money.md` — monetization guard: runs only on MONDAY nights; tracks thresholds and flags decisions that would block future income. Not a driver.
 - `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.

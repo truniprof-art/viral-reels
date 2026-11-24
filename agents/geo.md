@@ -7,3 +7,5 @@ Answer: which countries/languages/ages dominate or respond best; which posting h
 whether advertiser-valuable markets (US, UK, DE, CA, AU, Nordics) are growing; whether captions/titles should target a market
 (language, units, references, time slots). If data is too thin, say so and propose how to collect it (e.g. test slots).
 Return: #1 audience insight, ONE radical decision (posting hours, market focus, language), the metric + check date.
+
+Rewrite 2026-11-24 (recruiter): Instagram only. Until 100 followers (no country data), only compare first-hour/24 h reach by posting slot and propose one slot test per night; otherwise answer "no signal".

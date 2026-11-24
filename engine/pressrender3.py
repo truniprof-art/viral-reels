@@ -159,14 +159,14 @@ def draw(ctx, fo):
         bw = 360; ctx.set_source_rgba(*ST_.ink(.12)); ctx.rectangle(540 - bw / 2, 342, bw, 3); ctx.fill()
         ctx.set_source_rgba(*col[:3], .9); ctx.rectangle(540 - bw / 2, 342, bw * rem / T_ZERO, 3); ctx.fill()
         n = int(np.sum(~np.isnan(P[f, :, 0]))) + (int(np.sum((CR[:, 0] <= t) & (CR[:, 0] > t - 0.14))) if len(CR) else 0)
-        text(ctx, f"{n}", 540, 470, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
+        ST_.LAST[0] = n; text(ctx, f"{n}", 540, 470, 64, ST_.ink(.9), cairo.FONT_WEIGHT_BOLD, 2)
         text(ctx, ST_.LABEL, 540, 512, 24, ST_.ink(.4), cairo.FONT_WEIGHT_NORMAL, 8)
     else:
         text(ctx, "0:00", 540, 300, 120, (1, .32, .32, max(0, 1 - zt / .8)), cairo.FONT_WEIGHT_NORMAL, 4)
     sm_ = slow_amount(t)
     if sm_ > 0.3 and zt <= 0:
         text(ctx, "SLOW-MO", 540, 1830, 40, (1, .85, .2, sm_), cairo.FONT_WEIGHT_BOLD, 10)
-    if t > T_END - 0.4: ctx.set_source_rgba(0, 0, 0, (t - (T_END - .4)) / .4); ctx.paint()
+    ST_.endcard(ctx, t, T_END, text)
 
 def audio(path):
     sr = 44100; n = int(len(TMAP) / FPS * sr); y = np.zeros(n)
