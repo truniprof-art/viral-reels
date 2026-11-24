@@ -46,3 +46,9 @@ Psychology levers to test (pick 1–2 per video, change the lever often):
 - Underdog: one small ball vs the machine; people root for it.
 - Social proof & challenge: "only 3% watch to the end", "can you count them?" (honest, never fake stats).
 Rules still apply: 2D flat matte, brand-safe, never copy someone else's video or look, ~30 s.
+
+## Ownership (Kolya, 2026-11-24)
+Kolya: "YOU decide what happens on this account next; I only give advice." Claude owns the course of remon_cats (IG + YouTube):
+formats, look, growth tactics (incl. honest clickbait for follows), audience/country focus, posting slots. Decisions are made by the
+night council (agents/, decisions.md). Hard limits: TikTok untouched, honest, brand-safe, no copying, no identical reposts,
+no deleting posts or touching account credentials without Kolya.
