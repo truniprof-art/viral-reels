@@ -1,8 +1,13 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
 
-## 2026-11-24 — reference from Kolya
-- Kolya's favourite reel to get inspired by: https://www.instagram.com/reel/DeulekATWhb/ (Instagram blocks automated viewing; waiting for Kolya's description of what's in it: mechanism, shapes, hook).
+## 2026-11-24 — reference from Kolya (nexusboxlab reel, https://www.instagram.com/reel/DeulekATWhb/)
+What it is: round white-outline tank on pure black; two long grey arms with folding blades enter from opposite sides, fold shut into a rectangle TRAP around a ball, then SNAP: a shockwave ring + debris, and the ball becomes 4 new balls in a NEW colour (red -> green -> magenta -> blue -> cyan...). Arms keep re-positioning and trapping; ends with the circle packed solid. ~40 s, countdown timer top-right.
+Why it works: (1) 1 ball at 0:00 + a big tool closing on it = instant "what happens?" suspense; (2) the snap has a visible payoff (ring + burst); (3) colour per GENERATION makes the growth readable (you see each wave take over); (4) round tank feels fresh vs rectangles.
+Variations for us (never copy the arms/blades/look):
+- "Generation colours" for ANY of our mechanisms: each spawn takes the next hue in a palette, so the tank shows coloured waves of generations. Cheap upgrade to test on press/gates.
+- Trap-and-pop: a square frame (4 bars) slides in and CLAMPS around one shape, shockwave ring, shape -> 3 (triangle tank, sand bg). One clear rule, big readable moment, then the frame hunts the next one faster and faster.
+- Circle tank + snapping jaws: two semicircular jaws close like a mouth on whatever is in the centre; every bite turns each caught shape into two. Hook: "How many bites until it's full?"
 
 ## 2026-11-23 (23:00) — why our top reels hit + variations
 Top: press 14:38 (circle:char, NO caption) 25.6k views, skip 24.8%, 15.1 s avg watch; press 19:49 (circle:char) 14.4k, skip 23.5%; gates 21:49 (hex:slate) 2.4k, skip 23.3%.
