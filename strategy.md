@@ -1,6 +1,7 @@
 # Strategy — remon_cats (start 2026-11-23, deadline 2027-02-23)
 
 ## Platforms
+UPDATE 2026-11-24 (Kolya): INSTAGRAM ONLY. The YouTube channel is blocked; no YouTube uploads or analysis until Kolya says otherwise.
 Instagram Reels + YouTube Shorts (added 2026-11-23). TikTok: hands off, per Kolya.
 
 ## PRIORITY (Kolya, 2026-11-24, latest): ACCOUNT SUCCESS FIRST, money follows
