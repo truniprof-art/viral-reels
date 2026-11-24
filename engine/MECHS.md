@@ -7,6 +7,10 @@ Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs
   object shape (circle, triangle, square, ring, hex nut, star, pill), background, tank shape, palette.
   make.py picks a style (`STYLE` env, see style.py) that avoids the shapes of the last 4 posts and the backgrounds of the last 2.
   A hit format is a signal to make *new variations* of it, not to repost it.
+- NO REPEATED MECHANISM BUILD (owner, 2026-11-24): a mechanism is never posted again in the same build. Every regular post is a
+  *variation*: make.py picks a structural variant (VARIANTS in make.py: number of funnels/arms/paddles/gates, direction, size, press config)
+  not used in this kind's recent posts (log: ../variants.log, written by make.py — commit it). If a kind hits, add NEW variants of it
+  (test with `search`, need ≤3 at 5 s, ≤12 at 10 s, ≥500 final) instead of reposting. Kinds with a single variant (crusher) need new variants.
 - ONE FULLY UNIQUE VIDEO PER DAY: the 15:47 (Kyiv) run builds something never posted before — new mechanism,
   new reason to multiply, new tank shape or level layout — not just a re-skin.
 - Reasons to multiply may vary (crush, slice by a blade, pass through a x2 gate, split on a spike/prism, etc.), but each must be

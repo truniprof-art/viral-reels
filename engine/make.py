@@ -26,6 +26,24 @@ if os.path.exists(_pc):
 _shapes = [x for x in _st.SHAPES if all(not r.startswith(x + ":") for r in recent[-4:])] or _st.SHAPES
 _bgs = [x for x in _st.BG_NAMES if all(not r.endswith(":" + x) for r in recent[-2:])] or _st.BG_NAMES
 STYLE = {"shape": os.environ.get("SHAPE") or rnd.choice(_shapes), "bg": os.environ.get("BG") or rnd.choice(_bgs)}
+# ---- structural variant of the mechanism: never the same build as this kind's recent posts (owner rule 2026-11-24) ----
+VARIANTS = {
+    "belts":   {"v3cw": {}, "v3ccw": dict(SIGN="-1"), "v2ccw": dict(SIGN="-1", NV="2", PTH="28", ACT="12,0"),
+                "v4cw": dict(NV="4", PTH="20", ACT="11,0,14,17")},
+    "blender": {"arm4": {}, "arm3": dict(NARM="3", ARM="200"), "arm6": dict(NARM="6")},
+    "wheel":   {"pad6": {}, "pad4": dict(NP="4"), "pad8": dict(NP="8"), "small": dict(WR="280", CH0="1.4")},
+    "gates":   {"g3": {}, "g4": dict(GY="850,1020,1190,1360", GACT="0,10,16,21"), "wide": dict(COLW="130")},
+    "press":   {"c1": "2.2,1.5,0.7", "c2": "2.0,1.4,0.65", "c3": "2.4,1.6,0.75"},
+}
+VLOG = os.path.join(HERE, "..", "variants.log")
+used = [l.split() for l in open(VLOG)] if os.path.exists(VLOG) else []
+variant, VENV = "base", {}
+if kind in VARIANTS:
+    vs = list(VARIANTS[kind]); mine = [u[2] for u in used if len(u) > 2 and u[1] == kind]
+    keep = len(vs) - 1                                   # avoid every variant used in this kind's last len-1 posts
+    fresh = [v for v in vs if v not in mine[-keep:]] or vs
+    variant = os.environ.get("VARIANT") or rnd.choice(fresh)
+    VENV = VARIANTS[kind][variant]
 WORK = f"/tmp/vr_{kind}_{master}"
 os.makedirs(WORK, exist_ok=True)
 env = dict(os.environ, WORK=WORK, HUE=str(rnd.choice([0, 0, 40, 80, 140, 200, 260, 310])), PYTHONDONTWRITEBYTECODE="1", STYLE=json.dumps(STYLE))
@@ -53,10 +71,10 @@ def pick(test, seeds):
     return seeds[0]
 
 seeds = [rnd.randrange(1, 100000) for _ in range(12)]
-info = dict(kind=kind, master=master, hue=env["HUE"], style=f"{STYLE['shape']}:{STYLE['bg']}")
+info = dict(kind=kind, master=master, hue=env["HUE"], style=f"{STYLE['shape']}:{STYLE['bg']}", variant=variant)
 
 if kind == "press":
-    cfg = rnd.choice(["2.2,1.5,0.7", "2.0,1.4,0.65", "2.4,1.6,0.75"])
+    cfg = VENV
     def ok(s):
         o = capture(f"import presssim2 as p\nr=p.run({cfg},{s},record=False)\ncr=r['HIT']\n"
                     "n=lambda t:1+int(cr[cr[:,0]<=t][:,1].sum()) if len(cr) else 1\nprint(r['n'],n(6),n(15))")
@@ -85,7 +103,7 @@ elif kind == "crusher":
     mux([f"{WORK}/rlp0.mp4", f"{WORK}/rlp1.mp4"], f"{WORK}/rl_audio.wav")
 
 elif kind in MECHS:
-    m = MECHS[kind]; env.update(m.get("env", {}))
+    m = MECHS[kind]; env.update(m.get("env", {})); env.update(VENV)
     o = subprocess.run(PY + [m["file"], "search"] + [str(x) for x in seeds[:8]], cwd=HERE, env=env, check=True, capture_output=True, text=True).stdout
     best = seeds[0]
     for line in o.strip().splitlines():
@@ -99,4 +117,6 @@ elif kind in MECHS:
 else:
     sys.exit("unknown kind")
 
+import time
+with open(VLOG, "a") as f: f.write(f"{time.strftime('%Y-%m-%dT%H:%M')} {kind} {variant} {info['style']}\n")
 print(json.dumps(info))

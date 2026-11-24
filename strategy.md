@@ -27,3 +27,6 @@ In 3 months, build a unique account that attracts advertisers. Learn from and ge
 - IG: 6 followers; press reels hit 25.6k and 14.4k views (first breakout), ER ~0.6–1.2% (likes only, 0 comments/shares). YouTube: 1 subscriber, 0 videos — uploads rate-limited.
 - Mechanisms: 6 (press, crusher, belts, blender, gates, wheel) of the ≥10 target for month 1.
 - This week: double down on press through VARIATIONS (funnel tank, two-floor cascade), keep shapes rotating; push comment bait (0 comments so far) with guess-the-number hooks; get YouTube uploads working.
+
+## Rule update 2026-11-24 (Kolya)
+Mechanisms must not repeat. If a format hits, make something SIMILAR (a variation), never the same build again. Implemented: make.py picks a structural variant per post and logs it in variants.log; each hit format should get new variants added over time.
