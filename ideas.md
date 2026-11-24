@@ -1,5 +1,9 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+
+## 2026-11-24 — reference from Kolya
+- Kolya's favourite reel to get inspired by: https://www.instagram.com/reel/DeulekATWhb/ (Instagram blocks automated viewing; waiting for Kolya's description of what's in it: mechanism, shapes, hook).
+
 ## 2026-11-23 (23:00) — why our top reels hit + variations
 Top: press 14:38 (circle:char, NO caption) 25.6k views, skip 24.8%, 15.1 s avg watch; press 19:49 (circle:char) 14.4k, skip 23.5%; gates 21:49 (hex:slate) 2.4k, skip 23.3%.
 Why: the press is the most "readable" cause in 1 s — a giant slab slowly crushing one ball into two, the slow start builds suspense, then a clean exponential pile-up; dark bg + bright circles = high contrast in feed. Hook text barely mattered (best one had no caption).
