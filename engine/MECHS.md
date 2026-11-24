@@ -59,3 +59,4 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 - blender — round jar, 4-blade spinning knife SLICES objects (new cause).
 - gates — bucket elevators lift objects, they fall through glowing x2 gates (new cause, 3 gates switch on at 0/12/20 s).
 - wheel — big paddle wheel in a round trough scoops shapes up its rising side through a red x2 laser line (split on laser).
+- bumpers — RACE: tank split by a wall into two team colours (orange vs blue); a rotor flings shapes at a round pinball bumper on each side; touching the bumper = x2 (new cause). Orange recharges faster early, blue faster late, so the lead flips in the last ~5 s; side counters + LEADS/WINS, 'PICK A SIDE' title. Per-side cap 380.

@@ -10,7 +10,7 @@ Variations for us (adapt the betting/underdog race idea, never copy the floors/c
 
 
 ## 2026-11-24 — experiment ideas (psychology-driven, for the 15:47 slot)
-- Colour race with betting: two colours, each multiplies only on its own side; the leader flips twice (pattern interrupt); hook "Pick a colour before you watch 👇". Lever: prediction + curiosity gap.
+- [done 2026-11-24: bumpers] Colour race with betting: two colours, each multiplies only on its own side; the leader flips twice (pattern interrupt); hook "Pick a colour before you watch 👇". Lever: prediction + curiosity gap.
 - Picture reveal: balls fill the tank and settle into a simple pixel picture (a heart, a smiley, a number 1-9) only in the last 3 s. Lever: completion + rewatch.
 - Underdog: one tiny ball dodges a machine for 25 s and only multiplies at the very end. Lever: underdog + tension/release.
 - Rule flip at 15 s: the machine reverses its role (from doubling to halving), then the last 5 s doubling comes back for the explosion. Lever: pattern interrupt.

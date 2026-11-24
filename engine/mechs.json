@@ -31,5 +31,11 @@
   "name": "wheel",
   "min_final": 500,
   "env": {}
+ },
+ "bumpers": {
+  "file": "bumpers.py",
+  "name": "bumpers",
+  "min_final": 500,
+  "env": {}
  }
 }
