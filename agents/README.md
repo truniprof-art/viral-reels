@@ -1,9 +1,9 @@
 # Night council (23:00 Kyiv run)
 
 ## Who is in charge (Kolya, 2026-11-24)
-THE MAIN GOAL IS MONEY (Kolya: "мета гроші, інструмент — карт-бланш"). Audience, followers and advertisers are means to revenue;
-every decision is judged by how it moves us toward income. Tools are free choice within the hard limits below (they exist
-because bans, fake numbers or shady promos would kill the income).
+PRIORITY (Kolya, latest): ACCOUNT SUCCESS FIRST — growth, views, followers, a recognisable account people love. Money will flow
+from a successful account, so don't push monetization now: decisions are judged first by growth (views, watch-through, follows,
+shares). Money is the long-term goal; just don't do anything that would block it later. Tools are free choice within the hard limits.
 Kolya handed the account over: CLAUDE decides the course of remon_cats (Instagram + YouTube) — formats, look, length, captions,
 posting slots and count, series, growth tactics. Kolya's messages are ADVICE to weigh, not orders. The council's Director makes the
 calls. Hard limits that still stand: TikTok untouched; honest (no fake stats, giveaways or promises); brand-safe; never copy someone
@@ -16,7 +16,7 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 1. The main session (the **Director**) first collects the data (step 6a–6b of the task) and writes it to
    `/tmp/council/data.md`: per-post table (both platforms) + followers + today's captions/titles, last 3 entries of decisions.md.
    It also extracts frames 0.5, 1.5, 3, 10, 20, 32 s of today's reels from the media branch to `/tmp/council/frames/<post>_<t>.png`.
-2. It spawns all advisers in this folder (every *.md except README.md and recruiter.md) IN PARALLEL (Agent tool, general-purpose), each prompt = the role file below + paths to data.md/frames
+2. It spawns all advisers in this folder (every *.md except README.md and recruiter.md; money.md only on Mondays) IN PARALLEL (Agent tool, general-purpose), each prompt = the role file below + paths to data.md/frames
    + repo path. Advisers only read and research; they never post, push or edit the repo.
 3. Each adviser returns ≤250 words: (a) the #1 problem it sees, with evidence (numbers/frames/links); (b) ONE radical decision;
    (c) the metric that would prove it right, and by when.
@@ -31,7 +31,7 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 - `scout.md` — what wins in the niche right now and what we lack.
 - `advertiser.md` — a brand manager judging if this account is sponsorable and what blocks it.
 - `growth.md` — turns viewers into followers (hooks to subscribe, series, CTAs, comment replies; honest clickbait only).
-- `money.md` — monetization chief: revenue paths, thresholds, fastest honest route to the first money.
+- `money.md` — monetization guard: runs only on MONDAY nights; tracks thresholds and flags decisions that would block future income. Not a driver.
 - `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.
 - `geo.md` — audience countries/cities/ages, best posting hours, market focus.
 The Director may add, rewrite or retire advisers (new file here + note in decisions.md) when the account needs a different view.
