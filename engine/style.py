@@ -87,9 +87,18 @@ def opener(ctx, t, text, dur=2.6):
     text(ctx, f"{n} {ONE if n == 1 else LABEL}. ONE RULE.", W, y - 18, 58, ink(a), cairo.FONT_WEIGHT_BOLD, 2)
     text(ctx, "HOW MANY AT 0:00?", W, y + 58, 50, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 4)
 
+def midcue(ctx, t, text, t0=12.0, dur=2.2):
+    """Council 2026-11-26 (D6): follow cue while most viewers are still watching (avg watch ~14 s; end card at 31.5 s is too late)."""
+    if not (t0 <= t < t0 + dur): return
+    u = t - t0; a = min(1.0, u / .25, (dur - u) / .3)
+    ctx.set_source_rgba(1, .72, .25, .92 * a); ctx.rectangle(140, 1712, 800, 104); ctx.fill()
+    text(ctx, "FOLLOW @CRUSH.MULTIPLY", 540, 1760, 40, (.08, .08, .1, a), cairo.FONT_WEIGHT_BOLD, 4)
+    text(ctx, "a new machine every few hours", 540, 1800, 30, (.08, .08, .1, .85 * a), cairo.FONT_WEIGHT_NORMAL, 1)
+
 def endcard(ctx, t, T_END, text, dur=1.5):
     """Council 2026-11-24: replace the black fade with an end card (final count + follow CTA) over the full tank."""
     opener(ctx, t, text)
+    midcue(ctx, t, text)
     t0 = T_END - dur
     if t <= t0: return
     a = min(1.0, (t - t0) / .25)

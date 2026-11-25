@@ -8,7 +8,8 @@ Instagram Reels + YouTube Shorts (added 2026-11-23). TikTok: hands off, per Koly
 Growth (views, watch-through, follows, shares, recognisable identity) drives every decision. Money is the long-term goal and will
 come from a successful account; don't lean on monetization now, just never block it (money.md checks weekly). Carte blanche on tools within the hard limits in agents/README.md.
 
-## Goal from Kolya
+## Goal from Kolya (FIXED — Kolya 2026-11-26: the goal is never lowered; carte blanche on everything incl. content)
+Target: 10k followers on Instagram by 2027-02-23 ≈ 110 follows/day on average. 2026-11-25: 19 followers, ~9/day.
 In 3 months, build a unique account that attracts advertisers. Learn from and get inspired by what goes viral (our posts and the niche), but never repost identical videos.
 
 ## What advertisers look at (track weekly in log.md)

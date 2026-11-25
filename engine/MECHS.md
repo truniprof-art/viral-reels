@@ -68,6 +68,7 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 
 ## On-screen text & ending (council 2026-11-24)
 - OPENING BET (council 2026-11-25, D3): `style.opener` (called from `style.endcard` every frame) shows 0–2.6 s a banner '1 BALL. ONE RULE. / HOW MANY AT 0:00?' (start count = env N0, default 1; bumpers N0=2). End card adds 'from N0 in 30 seconds'. New renderers get it automatically by calling `ST_.endcard` every frame.
+- MID FOLLOW CUE (D6, 2026-11-26): `style.midcue` 12.0–14.2 s yellow bar 'FOLLOW @CRUSH.MULTIPLY', automatic via `ST_.endcard`.
 - SLOT CROSSOVER 11-26..11-28 (decisions.md D4): 12:47 = hit variation, 21:47 = brand-new mechanism.
 - All on-screen text is ENGLISH (labels BALLS/RINGS/… in style.LABELS).
 - No black fade: the last 1.5 s is `style.endcard()` — EPISODE N, FINAL COUNT (real, from `style.LAST`, set by the renderer's counter), "Did you guess it?", "NEW SIMULATION EVERY FEW HOURS · FOLLOW @CRUSH.MULTIPLY". New renderers must set `ST_.LAST[0]` where they draw the counter and call `ST_.endcard(ctx, t, T_END, text)` at the end of each frame.
