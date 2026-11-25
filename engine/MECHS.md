@@ -17,7 +17,7 @@ Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs
 - Reasons to multiply may vary (crush, slice by a blade, pass through a x2 gate, split on a spike/prism, etc.), but each must be
   clear and visible, and there is ONE rule per video. Plain random touching never multiplies an object.
 - One consistent rule per video. Rotation never reverses direction.
-- Start very slow (1–3 balls at 5 s, ≤12 at 10 s). Growth then explodes, and the tank is full at 0:00 (≥500 balls).
+- Start slow by DEFAULT (1–3 balls at 5 s, ≤12 at 10 s). Since 2026-11-26 (Kolya: "you are in charge") this is the council's default, not an owner rule: a decision in decisions.md may change it (first test: 15:47 head start on 11-26). Growth then explodes, and the tank is full at 0:00 (≥500 balls).
 - 2D only, flat matte style (no gloss), no slow-mo.
 - Balls never escape the tank.
 - The mechanism must not be so fast that balls can't get into it.
