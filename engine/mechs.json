@@ -62,5 +62,15 @@
   "env": {
    "W1": "4.4"
   }
+ },
+ "wheel_dual": {
+  "file": "wheel_dual.py",
+  "name": "wheel_dual",
+  "min_final": 500,
+  "env": {
+   "ACT2": "12",
+   "K2": "2",
+   "CH1": "0.03"
+  }
  }
 }

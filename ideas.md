@@ -65,7 +65,7 @@ Why: the press is the most "readable" cause in 1 s — a giant slab slowly crush
 
 ## 2026-11-25 — wheel variations
 - [done 2026-11-25: wheel_twin] Twin paddle wheels in a W trough, mirror rotation, a x2 laser on each outer rising side.
-- Wheel variation: a laser on the DESCENDING side too (two lasers per wheel, 2 doublings per lap) — cascade.
+- [done 2026-11-26: wheel_dual] Wheel variation: a laser on the DESCENDING side too (two lasers per wheel, 2 doublings per lap) — cascade.
 - Wheel variation: a tall stacked pair — small wheel on top feeds a big wheel below through a chute.
 
 ## 2026-11-24 (23:00) — why the top reels hit + variations
