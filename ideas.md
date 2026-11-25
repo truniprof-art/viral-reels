@@ -49,6 +49,11 @@ Why: the press is the most "readable" cause in 1 s — a giant slab slowly crush
 - Mirror tank: left half crushes, right half slices, with the counter split in two.
 - Brand slot test: objects in one brand-like colour pair, machine as the "product" (generic, no real logos until a sponsor exists).
 
+## 2026-11-25 — wheel variations
+- [done 2026-11-25: wheel_twin] Twin paddle wheels in a W trough, mirror rotation, a x2 laser on each outer rising side.
+- Wheel variation: a laser on the DESCENDING side too (two lasers per wheel, 2 doublings per lap) — cascade.
+- Wheel variation: a tall stacked pair — small wheel on top feeds a big wheel below through a chute.
+
 ## 2026-11-24 (23:00) — why the top reels hit + variations
 Top: press 19:49 (circle:char) 36.4k, skip 23.1%, 15.6 s; press 14:38 27.7k; gates 21:49 (hex:slate) 24.1k, skip 23.6%, 17.2 s avg (best watch). Why: one big readable cause (slab / glowing x2 gate) + high-contrast shapes on dark bg + slow start then visible pile-up; gates' hex nuts falling = longest watch. Today's lows (belts 1.2k, blender stars 1.6k) had the emptiest first seconds and highest skip (32–33%).
 - [done 2026-11-25: gates_zig] Gates variation: a "waterfall" of x2 gates in a zigzag (each gate shifted left/right), nuts bounce gate to gate — same readable glow, new path.

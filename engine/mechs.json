@@ -52,5 +52,13 @@
    "CH0": "1.2",
    "GACT": "0,11,17"
   }
+ },
+ "wheel_twin": {
+  "file": "wheel_twin.py",
+  "name": "wheel_twin",
+  "min_final": 500,
+  "env": {
+   "W1": "4.4"
+  }
  }
 }
