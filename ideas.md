@@ -1,5 +1,19 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-25 (23:00) — why the top reels hit + tonight's council ideas
+Top (lifetime): wheel pad4 ring:slate 56.4k (11 shares, 18.8 s, skip 20.2%), press circle:char 36.8k/27.8k, gates hex:slate 24.6k. Why: one big readable machine, high-contrast shapes on a dark bg, and the visible doubling cause is big on screen (paddles/slab/glowing gate). Today's weakest: hourglass (tiny balls, empty glass) 35.5% skip.
+New mechanisms:
+- Cascade press: 3 presses stacked vertically, shapes fall through each slab and double on every floor (data-skeptic).
+- Glass-crack tank: a visible crack/weight line on the tank; when the count passes it the glass breaks and everything spills (viewer) — also a 15:47 candidate.
+- Musical gate waterfall: 6–8 coloured x2 gates, each plays a note of a public-domain melody (scout/sound).
+Hit variations (evening):
+- Wheel pad4 'Will it hit 1000?' with a visible target line in the tank (sharer).
+- Press funnel with TWIN slabs side by side in a W funnel (geo).
+- Hourglass rematch as a variation: bigger shapes (BR ~14), x2 neck, faster first turn (viewer/experimenter).
+Experiments (15:47):
+- Same start, two rules: split screen x2 vs x3 from one shape each — counter-intuitive winner (sharer).
+- Head start vs guess: open at 64 objects with the target '1,000 before 0:00?' (data-skeptic; breaks slow-start rule -> only as a labelled experiment, needs Kolya's OK).
+
 ## 2026-11-25 — [done 2026-11-25: hourglass] Rotating hourglass tank, neck = x3. Variations later: two-neck (3 bulbs) hourglass; neck x2 vs x3 race; hourglass that turns faster each half-turn with visible 'TURN n' counter.
 
 ## 2026-11-24 — reference from Kolya (gravityplay.lab reel "1 BALL x2 VS 1,000,000")

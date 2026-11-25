@@ -74,8 +74,22 @@ def put(ctx, c, glow, x, y, i, BR):
     ctx.set_source_surface(s, -o, -o); ctx.paint(); ctx.restore()
 
 
+FIRST = [int(os.environ.get("N0", "1"))]   # start count (bumpers race: N0=2); count on the first frame (for the opening bet and "from N" on the end card)
+ONE = LABEL[:-1] if LABEL.endswith("S") else LABEL
+
+def opener(ctx, t, text, dur=2.6):
+    """Council 2026-11-25 (D3): the first frame states the bet, so the empty start reads as a challenge, not a diagram."""
+    if t >= dur: return
+    a = 1.0 if t < dur - .5 else max(0.0, (dur - t) / .5)
+    n = FIRST[0]
+    W, y = 540, 700
+    ctx.set_source_rgba(*BG, .78 * a); ctx.rectangle(110, y - 95, 860, 190); ctx.fill()
+    text(ctx, f"{n} {ONE if n == 1 else LABEL}. ONE RULE.", W, y - 18, 58, ink(a), cairo.FONT_WEIGHT_BOLD, 2)
+    text(ctx, "HOW MANY AT 0:00?", W, y + 58, 50, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 4)
+
 def endcard(ctx, t, T_END, text, dur=1.5):
     """Council 2026-11-24: replace the black fade with an end card (final count + follow CTA) over the full tank."""
+    opener(ctx, t, text)
     t0 = T_END - dur
     if t <= t0: return
     a = min(1.0, (t - t0) / .25)
@@ -85,6 +99,7 @@ def endcard(ctx, t, T_END, text, dur=1.5):
     text(ctx, "FINAL COUNT", W, 760, 40, ink(.7 * a), cairo.FONT_WEIGHT_NORMAL, 8)
     text(ctx, f"{LAST[0]}", W, 920, 170, ink(a), cairo.FONT_WEIGHT_BOLD, 2)
     text(ctx, LABEL, W, 1000, 40, ink(.7 * a), cairo.FONT_WEIGHT_NORMAL, 8)
-    text(ctx, "Did you guess it?", W, 1160, 52, ink(.95 * a), cairo.FONT_WEIGHT_BOLD, 0)
+    text(ctx, f"from {FIRST[0]} in 30 seconds", W, 1070, 40, ink(.8 * a), cairo.FONT_WEIGHT_NORMAL, 2)
+    text(ctx, "Did you guess it?", W, 1170, 52, ink(.95 * a), cairo.FONT_WEIGHT_BOLD, 0)
     text(ctx, "NEW SIMULATION EVERY FEW HOURS", W, 1300, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)
     text(ctx, "FOLLOW @CRUSH.MULTIPLY", W, 1360, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)

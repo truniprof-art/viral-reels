@@ -35,7 +35,8 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 - `growth.md` — turns viewers into followers (hooks to subscribe, series, CTAs, comment replies; honest clickbait only).
 - `money.md` — monetization guard: runs only on MONDAY nights; tracks thresholds and flags decisions that would block future income. Not a driver.
 - `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.
-- `geo.md` — audience countries/cities/ages, best posting hours, market focus.
+- `geo.md` — RETIRED 2026-11-25 (overlap with experimenter; re-hire at ≥100 followers), see retired/.
+- `sound.md` — sound designer: audio of the reels (melody per split, ASMR), public-domain/own synth only (hired 2026-11-25).
 The Director may add, rewrite or retire advisers (new file here + note in decisions.md) when the account needs a different view.
 
 ## What counts as radical (allowed)

@@ -7,3 +7,5 @@ changing the same metric at once, so neither can be judged? What is the smallest
 a holdout of 1 post/day without the change)?
 Honest limits: never call a result from <3 posts per arm or posts <24 h old. Say your confidence in plain words.
 Return ≤250 words: #1 measurement problem, ONE decision (a concrete test design: arms, slots, how many posts, the stop rule), the metric + check date.
+
+Added 2026-11-25 (recruiter): you also take over geo's request — in data.md the Director logs views at +1 h and +24 h per post when available; use them to compare slots.

@@ -1,3 +1,5 @@
+RETIRED 2026-11-25 (recruiter): full overlap with experimenter (slot tests); no country data under 100 followers. Re-hire at >=100 followers.
+
 # Role: Audience geographer
 Find WHO watches and from WHERE, and how to use it. Instagram (Windsor, connector instagram): audience_country_name +
 audience_country_size, city + audience_city_size, audience_gender_age_name/size (lifetime, follower-based; may be empty under

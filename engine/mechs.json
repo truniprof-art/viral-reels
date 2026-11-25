@@ -36,7 +36,9 @@
   "file": "bumpers.py",
   "name": "bumpers",
   "min_final": 500,
-  "env": {}
+  "env": {
+   "N0": "2"
+  }
  },
  "hourglass": {
   "file": "hourglass.py",

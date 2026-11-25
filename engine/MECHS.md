@@ -67,6 +67,8 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 - hourglass — the tank IS a giant hourglass turning slowly one way; every shape squeezing through the glowing NECK becomes THREE (first x3 rule; base.py `NSPLIT` on the mech). Small shapes (BR 9) like sand; it pours back through the neck every half-turn, so growth comes in waves. Own walls, BX0..FLOOR widened.
 
 ## On-screen text & ending (council 2026-11-24)
+- OPENING BET (council 2026-11-25, D3): `style.opener` (called from `style.endcard` every frame) shows 0–2.6 s a banner '1 BALL. ONE RULE. / HOW MANY AT 0:00?' (start count = env N0, default 1; bumpers N0=2). End card adds 'from N0 in 30 seconds'. New renderers get it automatically by calling `ST_.endcard` every frame.
+- SLOT CROSSOVER 11-26..11-28 (decisions.md D4): 12:47 = hit variation, 21:47 = brand-new mechanism.
 - All on-screen text is ENGLISH (labels BALLS/RINGS/… in style.LABELS).
 - No black fade: the last 1.5 s is `style.endcard()` — EPISODE N, FINAL COUNT (real, from `style.LAST`, set by the renderer's counter), "Did you guess it?", "NEW SIMULATION EVERY FEW HOURS · FOLLOW @CRUSH.MULTIPLY". New renderers must set `ST_.LAST[0]` where they draw the counter and call `ST_.endcard(ctx, t, T_END, text)` at the end of each frame.
 - Episode N = env EP, else posts.csv rows + 1 (so it matches the caption "Episode N").
