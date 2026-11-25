@@ -3,6 +3,7 @@
 Series format: a 33 s vertical (1080x1920) flat-matte 2D video. A countdown runs 0:30 → 0:00, with an object counter. Objects multiply when the video's mechanism acts on them (crush, slice, x2 gate…): one is removed and two new ones spawn. At 0:00 the tank explodes.
 
 ## Rules from the owner (do not break)
+- EVERY POST = A NEW MECHANISM (Kolya, 2026-11-25): every regular post builds a mechanism that is not yet in mechs.json (new machine / new reason to multiply / new tank or level), not a variant or re-skin. `make.py auto` (rotation of old mechs with a fresh variant) is only the FALLBACK when a new build fails in ~40 min. The 15:47 slot is an EXPERIMENT that does not look like our usual content (may drop the tank / counter / multiply format; still 2D flat matte, honest, brand-safe, ~30 s, end card with follow).
 - VARIETY FIRST (owner, 2026-11-23): never post near-identical videos. Every video differs in mechanism and/or look:
   object shape (circle, triangle, square, ring, hex nut, star, pill), background, tank shape, palette.
   make.py picks a style (`STYLE` env, see style.py) that avoids the shapes of the last 4 posts and the backgrounds of the last 2.

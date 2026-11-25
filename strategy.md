@@ -57,3 +57,7 @@ Kolya: "YOU decide what happens on this account next; I only give advice." Claud
 formats, look, growth tactics (incl. honest clickbait for follows), audience/country focus, posting slots. Decisions are made by the
 night council (agents/, decisions.md). Hard limits: TikTok untouched, honest, brand-safe, no copying, no identical reposts,
 no deleting posts or touching account credentials without Kolya.
+
+## Course update 2026-11-25 (Kolya's advice, adopted)
+EVERY POST = A NEW MECHANISM (Kolya, 2026-11-25): every regular post builds a mechanism that is not yet in mechs.json (new machine / new reason to multiply / new tank or level), not a variant or re-skin. `make.py auto` (rotation of old mechs with a fresh variant) is only the FALLBACK when a new build fails in ~40 min. The 15:47 slot is an EXPERIMENT that does not look like our usual content (may drop the tank / counter / multiply format; still 2D flat matte, honest, brand-safe, ~30 s, end card with follow).
+Why: variety is our identity and every new machine is a fresh hook; hits get NEW mechanisms inspired by them, never rebuilds. Risk: build time per run and quality; fallback keeps the posting cadence.
