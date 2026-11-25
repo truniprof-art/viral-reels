@@ -86,5 +86,5 @@ def endcard(ctx, t, T_END, text, dur=1.5):
     text(ctx, f"{LAST[0]}", W, 920, 170, ink(a), cairo.FONT_WEIGHT_BOLD, 2)
     text(ctx, LABEL, W, 1000, 40, ink(.7 * a), cairo.FONT_WEIGHT_NORMAL, 8)
     text(ctx, "Did you guess it?", W, 1160, 52, ink(.95 * a), cairo.FONT_WEIGHT_BOLD, 0)
-    text(ctx, "A NEW MACHINE EVERY DAY", W, 1300, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)
-    text(ctx, "FOLLOW @REMON_CATS", W, 1360, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)
+    text(ctx, "NEW SIMULATION EVERY FEW HOURS", W, 1300, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)
+    text(ctx, "FOLLOW @CRUSH.MULTIPLY", W, 1360, 36, (1, .72, .25, a), cairo.FONT_WEIGHT_BOLD, 6)

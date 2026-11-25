@@ -63,5 +63,5 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 
 ## On-screen text & ending (council 2026-11-24)
 - All on-screen text is ENGLISH (labels BALLS/RINGS/… in style.LABELS).
-- No black fade: the last 1.5 s is `style.endcard()` — EPISODE N, FINAL COUNT (real, from `style.LAST`, set by the renderer's counter), "Did you guess it?", "A NEW MACHINE EVERY DAY · FOLLOW @REMON_CATS". New renderers must set `ST_.LAST[0]` where they draw the counter and call `ST_.endcard(ctx, t, T_END, text)` at the end of each frame.
+- No black fade: the last 1.5 s is `style.endcard()` — EPISODE N, FINAL COUNT (real, from `style.LAST`, set by the renderer's counter), "Did you guess it?", "NEW SIMULATION EVERY FEW HOURS · FOLLOW @CRUSH.MULTIPLY". New renderers must set `ST_.LAST[0]` where they draw the counter and call `ST_.endcard(ctx, t, T_END, text)` at the end of each frame.
 - Episode N = env EP, else posts.csv rows + 1 (so it matches the caption "Episode N").

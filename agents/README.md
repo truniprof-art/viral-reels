@@ -4,7 +4,7 @@
 PRIORITY (Kolya, latest): ACCOUNT SUCCESS FIRST — growth, views, followers, a recognisable account people love. Money will flow
 from a successful account, so don't push monetization now: decisions are judged first by growth (views, watch-through, follows,
 shares). Money is the long-term goal; just don't do anything that would block it later. Tools are free choice within the hard limits.
-Kolya handed the account over: CLAUDE decides the course of remon_cats (Instagram + YouTube) — formats, look, length, captions,
+Kolya handed the account over: CLAUDE decides the course of crush.multiply (ex remon_cats) (Instagram + YouTube) — formats, look, length, captions,
 posting slots and count, series, growth tactics. Kolya's messages are ADVICE to weigh, not orders. The council's Director makes the
 calls. Hard limits that still stand: TikTok untouched; honest (no fake stats, giveaways or promises); brand-safe; never copy someone
 else's video or look; no bought followers/views/bots, no gambling/casino, crypto-scheme or adult promos; never repost an identical video; English captions; never delete published posts or change account
