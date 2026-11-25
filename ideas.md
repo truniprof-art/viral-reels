@@ -51,6 +51,6 @@ Why: the press is the most "readable" cause in 1 s — a giant slab slowly crush
 
 ## 2026-11-24 (23:00) — why the top reels hit + variations
 Top: press 19:49 (circle:char) 36.4k, skip 23.1%, 15.6 s; press 14:38 27.7k; gates 21:49 (hex:slate) 24.1k, skip 23.6%, 17.2 s avg (best watch). Why: one big readable cause (slab / glowing x2 gate) + high-contrast shapes on dark bg + slow start then visible pile-up; gates' hex nuts falling = longest watch. Today's lows (belts 1.2k, blender stars 1.6k) had the emptiest first seconds and highest skip (32–33%).
-- Gates variation: a "waterfall" of x2 gates in a zigzag (each gate shifted left/right), nuts bounce gate to gate — same readable glow, new path.
+- [done 2026-11-25: gates_zig] Gates variation: a "waterfall" of x2 gates in a zigzag (each gate shifted left/right), nuts bounce gate to gate — same readable glow, new path.
 - Press variation: a press with a WINDOW counter on the slab showing how many it crushed (the machine "keeps score") — prediction bait.
 - Cold-open test (viewer): first 0.7 s shows the final full tank with "1 → ?", then cut to 0:30 — test on one gates post.

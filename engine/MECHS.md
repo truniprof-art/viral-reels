@@ -61,6 +61,7 @@ A mech without the rectangular tank sets `tank_walls = False`, builds its own wa
 - gates — bucket elevators lift objects, they fall through glowing x2 gates (new cause, 3 gates switch on at 0/12/20 s).
 - wheel — big paddle wheel in a round trough scoops shapes up its rising side through a red x2 laser line (split on laser).
 - bumpers — RACE: tank split by a wall into two team colours (orange vs blue); a rotor flings shapes at a round pinball bumper on each side; touching the bumper = x2 (new cause). Orange recharges faster early, blue faster late, so the lead flips in the last ~5 s; side counters + LEADS/WINS, 'PICK A SIDE' title. Per-side cap 380.
+- gates_zig (gates_zig.py, variation of gates, 2026-11-25) — same bucket elevators, but three HALF-WIDTH x2 gates staggered left/right/left with a slanted ramp under the first two: shapes zigzag gate→ramp→gate (marble-run waterfall), up to 3 doublings per trip. Env CH0=1.2, GACT=0,11,17.
 - hourglass — the tank IS a giant hourglass turning slowly one way; every shape squeezing through the glowing NECK becomes THREE (first x3 rule; base.py `NSPLIT` on the mech). Small shapes (BR 9) like sand; it pours back through the neck every half-turn, so growth comes in waves. Own walls, BX0..FLOOR widened.
 
 ## On-screen text & ending (council 2026-11-24)

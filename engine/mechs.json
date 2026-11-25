@@ -43,5 +43,14 @@
   "name": "hourglass",
   "min_final": 500,
   "env": {}
+ },
+ "gates_zig": {
+  "file": "gates_zig.py",
+  "name": "gates_zig",
+  "min_final": 500,
+  "env": {
+   "CH0": "1.2",
+   "GACT": "0,11,17"
+  }
  }
 }

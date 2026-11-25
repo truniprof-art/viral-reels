@@ -1,1 +1,11 @@
-{"press": 4, "crusher": 1, "belts": 1, "blender": 2, "gates": 4, "wheel": 2, "bumpers": 0, "hourglass": 2}
+{
+ "press": 4,
+ "crusher": 1,
+ "belts": 1,
+ "blender": 2,
+ "gates": 4,
+ "wheel": 2,
+ "bumpers": 0,
+ "hourglass": 2,
+ "gates_zig": 2
+}
