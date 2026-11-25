@@ -3,16 +3,24 @@ import pymunk, math, random, sys, os
 import numpy as np
 
 W, H, FPS = 1080, 1920, 30
-BX0, BX1, BY0, BY1 = 150, 930, 900, 1640       # glass box (inner)
+_E = lambda k, d: type(d)(os.environ.get(k, d))
+BX0, BX1, BY0, BY1 = 150, 930, _E("PBY0", 900), 1640   # glass box (inner)
 ANVIL_Y = 1600                                  # anvil top surface
-PX0, PX1 = 390, 690                             # press / anvil span
-SLOPE_Y = 1330                                  # where the V floor meets the side walls
-BR = 15.0
+PX0, PX1 = _E("PX0", 390), _E("PX1", 690)       # press / anvil span (env: narrow press = funnel variant)
+SLOPE_Y = _E("SLOPE_Y", 1330)                   # where the V floor meets the side walls (lower value = steep funnel tank)
+BR = _E("PBR", 15.0)
 T_ZERO, T_END = 30.0, 33.0
 SUB = 10
 MAXN = int(os.environ.get("MAXN", "820"))
 HEAD_H = 70
 UP_GAP = 120                                    # gap between head and anvil when raised
+
+FUNNEL = SLOPE_Y < 1200
+def wall_x(y):
+    """inner x of the slanted walls at height y (wall line (BX0-14,SLOPE_Y-14)->(PX0,ANVIL_Y+14), radius 22)"""
+    u = (y - (SLOPE_Y - 14)) / (ANVIL_Y + 28 - SLOPE_Y)
+    xl = BX0 - 14 + (PX0 - BX0 + 14) * u; xr = BX1 + 14 - (BX1 + 14 - PX1) * u
+    return xl + 22, xr - 22
 
 def slam_times(first, i0, i1, end):
     ts = []; t = first
@@ -100,14 +108,19 @@ def run(first, i0, i1, seed, record=True):
                 spawnq.remove(item); _, x0, col = item
                 for sgn in (-1, 1):
                     x = (PX0 - BR - 8) if sgn < 0 else (PX1 + BR + 8)
-                    add_ball((x + rnd.uniform(-3, 3), ANVIL_Y - BR - 6 - rnd.uniform(0, 20)),
+                    ys = ANVIL_Y - BR - 6 - rnd.uniform(0, 20)
+                    if FUNNEL:                                   # steep walls: spawn just inside the slanted wall
+                        ys = ANVIL_Y - 70 - rnd.uniform(0, 20); xl, xr = wall_x(ys)
+                        x = (xl + 24 + BR) if sgn < 0 else (xr - 24 - BR)
+                    add_ball((x + rnd.uniform(-3, 3), ys),
                              (sgn * rnd.uniform(380, 820), -rnd.uniform(900, 1350)), col, f)
             if not exploded:
                 for c, bl in balls.items():
                     v = bl[0].velocity
                     if v.length > 1500: bl[0].velocity = v * (1500 / v.length)
                     p = bl[0].position
-                    if not (BX0 - 5 < p.x < BX1 + 5 and BY0 - 5 < p.y < ANVIL_Y + 30):
+                    out_ = FUNNEL and p.y > SLOPE_Y and not (wall_x(p.y)[0] + 4 < p.x < wall_x(p.y)[1] - 4)
+                    if out_ or not (BX0 - 5 < p.x < BX1 + 5 and BY0 - 5 < p.y < ANVIL_Y + 30):
                         bl[0].position = (540 + rnd.uniform(-200, 200), BY0 + 200); bl[0].velocity = (0, 0)
         if record:
             for c, (b, col, bf, i_) in balls.items():

@@ -30,7 +30,7 @@ Variations for us (never copy the arms/blades/look):
 ## 2026-11-23 (23:00) — why our top reels hit + variations
 Top: press 14:38 (circle:char, NO caption) 25.6k views, skip 24.8%, 15.1 s avg watch; press 19:49 (circle:char) 14.4k, skip 23.5%; gates 21:49 (hex:slate) 2.4k, skip 23.3%.
 Why: the press is the most "readable" cause in 1 s — a giant slab slowly crushing one ball into two, the slow start builds suspense, then a clean exponential pile-up; dark bg + bright circles = high contrast in feed. Hook text barely mattered (best one had no caption).
-- Press variation: a TRIANGLE tank (funnel) under a narrow press — the pile climbs the funnel walls, same "one slab, one rule" readability.
+- [done 2026-11-25: press funnel] Press variation: a TRIANGLE tank (funnel) under a narrow press — the pile climbs the funnel walls, same "one slab, one rule" readability.
 - Press variation: two presses stacked on two floors; crushed balls drop to the lower press (cascade, slow then explosive).
 - Gates variation: x2 gate that MOVES (sliding laser bar sweeping up/down) instead of fixed bars.
 
