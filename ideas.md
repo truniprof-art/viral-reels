@@ -1,5 +1,7 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-25 — [done 2026-11-25: hourglass] Rotating hourglass tank, neck = x3. Variations later: two-neck (3 bulbs) hourglass; neck x2 vs x3 race; hourglass that turns faster each half-turn with visible 'TURN n' counter.
+
 ## 2026-11-24 — reference from Kolya (gravityplay.lab reel "1 BALL x2 VS 1,000,000")
 What it is: dark navy bg, two tall columns side by side (gold vs cyan outline), title "1 BALL x2 VS 1,000,000 — WHO BREAKS THROUGH FIRST?". Each column has 30 breakable floors with HP numbers that grow downward (7, 17, 27 … 23M). Left: a pile of 1,000,000 that NEVER CHANGES chews through floors fast. Right: 1 ball that x2 EACH FLOOR it breaks — crawls at first (1, 2, 4, 8…), then explodes (4096 -> 262k -> 1.07B) and overtakes at the last second. End card "1 BALL x2 WINS! 1,000,000 was only 0.3% away. Did you pick the right side?". ~32 s, countdown top-right, floor counter "FLOOR n/30" per side.
 Why it works: (1) betting in the first second — the title IS a question, viewer instantly picks a side; (2) linear vs exponential is counter-intuitive, so the underdog looks hopeless for 20 s (curiosity gap + underdog); (3) "FLOOR n/30" progress bars make the race readable at a glance; (4) photo finish ("only 0.3% away") = tension/release + comments "I knew it"; (5) end question drives comments.

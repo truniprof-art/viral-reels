@@ -56,6 +56,7 @@ def run(mech, seed, record=True, start=((540, 900), (150, 0))):
     COLS = np.zeros((MAXID, 3), np.float32); BORN = np.full(MAXID, -1, np.int32)
     CR = []; COUNT = np.zeros(nfr, np.int32); ST = []
     exploded = False
+    NS = getattr(mech, "NSPLIT", 2)          # shapes born per split (2 = x2, 3 = x3)
     for f in range(nfr):
         for s_ in range(SUB):
             t = (f + s_ / SUB) / FPS; dt = 1 / FPS / SUB
@@ -76,7 +77,7 @@ def run(mech, seed, record=True, start=((540, 900), (150, 0))):
                     mask = mech.crush(t, pos)
                     for c, m in zip(shapes, mask):
                         if not m: continue
-                        if len(balls) + 2 * len(spawnq) >= MAXN: break
+                        if len(balls) + NS * len(spawnq) >= MAXN: break
                         b, col, bf, i_ = balls.pop(c); p = b.position; space.remove(b, c)
                         CR.append((t, p.x, p.y, *col))
                         spawnq.append((t + 0.12, p.x, p.y, colour(t)))
@@ -86,7 +87,7 @@ def run(mech, seed, record=True, start=((540, 900), (150, 0))):
                     for item in due:
                         spawnq.remove(item); _, x0, y0, col = item
                         dx, dy = mech.spawn_dir(x0, y0)
-                        for sgn in (-1, 1):
+                        for sgn in ((-1, 1) if NS == 2 else (-1, 0, 1)):
                             # first free spot from the crush point moving against gravity
                             if hasattr(mech, "spawn_xy"): x, y = mech.spawn_xy(x0, y0, sgn)
                             else:
@@ -105,7 +106,7 @@ def run(mech, seed, record=True, start=((540, 900), (150, 0))):
                     p = bl[0].position
                     if not (BX0 - 8 < p.x < BX1 + 8 and BY0 - 8 < p.y < FLOOR + 8):
                         bl[0].position = (min(BX1 - 20, max(BX0 + 20, p.x)), min(FLOOR - 20, max(BY0 + 20, p.y))); bl[0].velocity = (0, 0)
-        COUNT[f] = len(balls) + 2 * len(spawnq)
+        COUNT[f] = len(balls) + NS * len(spawnq)
         ST.append(mech.state(f / FPS))
         if record:
             for c, (b, col, bf, i_) in balls.items():
