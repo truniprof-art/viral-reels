@@ -30,3 +30,4 @@ Experiment (head start wheel_rush): skip 31.0% vs median 31.8% — no win so far
 Main problem: no carry-over reason to follow + reach per post collapsing (median 24.7k→9k→3.0k→1.8k by day). Decisions: D8 World Ball League (3 slots/day, standings, wildcards from comments; Race 2 with POL 11-27 15:47), D9 banner A/B + 'close to winners' builds in satisfying slots. Pool: wheel, press, gates, blender (twin/dual/spin paused).
 YouTube Trunik: 5 subs, API data lags (to 11-24); only Ep15 on channel; Ep16–25 packages unposted.
 Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 followers).
+- 2026-11-27 01:47 Ep26 gates wide (hit variation, D9 arm B no banner), IG 18647205730065188; YT package sent. Caption says 'our most-watched build' — loose: gates g3 (24.6k) is one of the breakouts, wheel pad4 (56k) is the top; avoid this phrase.
