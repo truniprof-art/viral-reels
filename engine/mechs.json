@@ -87,5 +87,16 @@
   "name": "geyser",
   "min_final": 500,
   "env": {}
+ },
+ "blender_twin": {
+  "file": "blender_twin.py",
+  "name": "blender_twin",
+  "min_final": 500,
+  "env": {
+   "PTH": "1.6",
+   "PTH1": "0.6",
+   "W0": "0.7",
+   "MAXN": "650"
+  }
  }
 }

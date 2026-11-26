@@ -9,6 +9,7 @@ New mechanisms:
 - Glass-crack tank: a visible crack/weight line on the tank; when the count passes it the glass breaks and everything spills (viewer) — also a 15:47 candidate.
 - Musical gate waterfall: 6–8 coloured x2 gates, each plays a note of a public-domain melody (scout/sound).
 Hit variations (evening):
+- [done 2026-11-26: blender_twin] Blender variation: TWIN counter-rotating 3-arm blades low in one round jar + centre divider that slides shapes into the two blade pockets (second blade starts at 8 s).
 - Wheel pad4 'Will it hit 1000?' with a visible target line in the tank (sharer).
 - Press funnel with TWIN slabs side by side in a W funnel (geo).
 - Hourglass rematch as a variation: bigger shapes (BR ~14), x2 neck, faster first turn (viewer/experimenter).
