@@ -98,5 +98,21 @@
    "W0": "0.7",
    "MAXN": "650"
   }
+ },
+ "wheel_rush": {
+  "file": "wheel_rush.py",
+  "name": "wheel_rush",
+  "min_final": 800,
+  "max5": 80,
+  "max10": 110,
+  "env": {
+   "N0": "48",
+   "NP": "7",
+   "CH0": "0.4",
+   "CH1": "0.04",
+   "W0": "1.0",
+   "WE": "0.8",
+   "MAXN": "1000"
+  }
  }
 }

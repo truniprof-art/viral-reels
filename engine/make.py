@@ -112,7 +112,7 @@ elif kind in MECHS:
     for line in o.strip().splitlines():
         sd, rest = line.split(" ", 1); c = json.loads(rest)
         print(kind, sd, c, flush=True)
-        if c[-1] >= m.get("min_final", 500) and c[0] <= 3 and c[1] <= 12: best = int(sd); break
+        if c[-1] >= m.get("min_final", 500) and c[0] <= m.get("max5", 3) and c[1] <= m.get("max10", 12): best = int(sd); break
     info.update(seed=best)
     sh(PY + [m["file"], "rec", str(best)])
     sh(PY + [m["file"], "all"])

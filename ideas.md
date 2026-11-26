@@ -15,7 +15,7 @@ Hit variations (evening):
 - Hourglass rematch as a variation: bigger shapes (BR ~14), x2 neck, faster first turn (viewer/experimenter).
 Experiments (15:47):
 - Same start, two rules: split screen x2 vs x3 from one shape each — counter-intuitive winner (sharer).
-- Head start vs guess: open at 64 objects with the target '1,000 before 0:00?' (data-skeptic; breaks slow-start rule -> only as a labelled experiment, needs Kolya's OK).
+- [done 2026-11-26: wheel_rush, 48 → 1000] Head start vs guess: open at 64 objects with the target '1,000 before 0:00?' (data-skeptic; breaks slow-start rule -> only as a labelled experiment, needs Kolya's OK).
 
 ## 2026-11-25 — [done 2026-11-25: hourglass] Rotating hourglass tank, neck = x3. Variations later: two-neck (3 bulbs) hourglass; neck x2 vs x3 race; hourglass that turns faster each half-turn with visible 'TURN n' counter.
 
