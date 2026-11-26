@@ -81,5 +81,11 @@
    "CH1": "0.02",
    "ACT2": "12"
   }
+ },
+ "geyser": {
+  "file": "geyser.py",
+  "name": "geyser",
+  "min_final": 500,
+  "env": {}
  }
 }

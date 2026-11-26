@@ -1,5 +1,7 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+- [done 2026-11-26 09:47: geyser] Geyser + hoop: air jet from a funnel nozzle shoots shapes up through a floating x2 hoop (basketball-shot feel). Variations later: two hoops at different heights; moving hoop on a circular track; twin geysers racing.
+
 ## 2026-11-25 (23:00) — why the top reels hit + tonight's council ideas
 Top (lifetime): wheel pad4 ring:slate 56.4k (11 shares, 18.8 s, skip 20.2%), press circle:char 36.8k/27.8k, gates hex:slate 24.6k. Why: one big readable machine, high-contrast shapes on a dark bg, and the visible doubling cause is big on screen (paddles/slab/glowing gate). Today's weakest: hourglass (tiny balls, empty glass) 35.5% skip.
 New mechanisms:
