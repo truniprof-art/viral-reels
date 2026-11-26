@@ -27,11 +27,12 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 
 ## Advisers
 - `data-skeptic.md` — finds the bottleneck in the funnel from numbers.
-- `viewer.md` — judges the reels as a cold scroller from frames.
-- `scout.md` — what wins in the niche right now and what we lack.
+- `viewer.md` — cold scroller + owner of the FIRST FRAME of every format (rewritten 2026-11-26).
+- `scout.md` — concept scout: formats in ANY niche that gain followers (rewritten 2026-11-26).
 - `advertiser.md` — RETIRED 2026-11-24 (overlap with growth), see retired/.
 - `experimenter.md` — makes decisions measurable: noise vs signal, test design, stop rules (hired 2026-11-24).
-- `sharer.md` — why Instagram pushes or stops pushing a reel: shares, sends, first hour (hired 2026-11-24).
+- `sharer.md` — RETIRED 2026-11-26 (absorbed by growth/data-skeptic/showrunner), see retired/.
+- `showrunner.md` — league/series continuity, promise ledger, wildcards from comments, reply drafts (hired 2026-11-26).
 - `growth.md` — turns viewers into followers (hooks to subscribe, series, CTAs, comment replies; honest clickbait only).
 - `money.md` — monetization guard: runs only on MONDAY nights; tracks thresholds and flags decisions that would block future income. Not a driver.
 - `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.

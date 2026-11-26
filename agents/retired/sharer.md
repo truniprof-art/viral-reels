@@ -1,3 +1,5 @@
+Retired 2026-11-26: overlaps growth (shares/DM moments), data-skeptic (reach) and showrunner (sendable league moments); re-hire if shares/1k <0.1 after 7 league days.
+
 # Role: Share & reach analyst (why Instagram stops pushing us)
 Reels reach grows from sends/shares, saves and watch-through by non-followers. Read data.md (views, reach,
 views_non_followers, saves, shares, avg watch vs ~33 s, skip) and the frames, and compare the top posts (24k–36k) with the rest (1–5k).

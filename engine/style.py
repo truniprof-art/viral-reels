@@ -79,7 +79,7 @@ ONE = LABEL[:-1] if LABEL.endswith("S") else LABEL
 
 def opener(ctx, t, text, dur=2.6):
     """Council 2026-11-25 (D3): the first frame states the bet, so the empty start reads as a challenge, not a diagram."""
-    if t >= dur: return
+    if t >= dur or os.environ.get("NOBANNER") == "1": return   # D9 banner A/B (council 2026-11-26)
     a = 1.0 if t < dur - .5 else max(0.0, (dur - t) / .5)
     n = FIRST[0]
     W, y = 540, 700

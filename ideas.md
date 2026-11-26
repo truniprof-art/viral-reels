@@ -1,5 +1,22 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-26 (23:00) — council: why things hit + next ideas
+Top lifetime still wheel pad4 58.2k (only reel with real shares), press family 36.9k/31.8k/27.9k, gates 24.7k. All simple single-machine builds, dark bg, big readable moving part. Today: no breakout; twin/dual/spin variations 1.4–3.3k (clutter, not action); geyser 41.7% skip. Follows: +7 (19→26). First-ever comment: 'Poland' on Country Race #1.
+CONCEPT TRACK (top = next):
+- [NEXT, D8] WORLD BALL LEAGUE Season 1 — Race 2 on 11-27 15:47 with POL wildcard (requested in comments), points table concepts/league.json, end card = top-5 standings + 'Race n+1 in 3 h'. First frame already moving, big flags, one line 'POLAND JOINS — YOU ASKED'.
+- League format 2: 'TOP-2 DUEL' — the two leaders 1-vs-1 on a short track (~15 s), points count (sharer). Sendable to a rival-country friend.
+- League format 3: 'ELIMINATION' — last ball out each ramp, last one standing gets bonus points (real sim).
+New mechanisms:
+- Cascade press: 3 stacked slabs, shapes double on each floor (old, still open).
+- Big-shape conveyor oven: a single wide belt carries shapes through a glowing x2 'oven' arch — one large readable cause (viewer: readability first).
+Hit variations (close to winners, D9):
+- wheel pad5 (NP 5) with rings on slate — 1 param from pad4.
+- press base with a wider slab (PX0 260/PX1 820) on char — 1 param from the 36.9k press.
+- gates base with 2 gates only (bigger gap, bigger shapes) on dark bg.
+Experiments:
+- Climax cold-open: first 1.2 s = the real final frame of the same run ('1 → 900 in 30 s. Watch how'), then 0:30 (viewer; next candidate after D9).
+- Pentatonic ladder: each split plays a higher note of an own-synth scale (sound; after D9 read).
+
 ## 2026-11-26 — CONCEPT TRACK (D7, slots 15:47 + 21:47): reasons to FOLLOW, not new machines
 - [IN PROGRESS: #1 posted 2026-11-26 21:55, Ep24, concepts/country_race.py seed 20, winner BRA, IND 2nd, NGA 3rd. PROMISE ON SCREEN: 'the most requested (commented) countries race in COUNTRY RACE #2 — TOMORROW' → 2026-11-27 15:47 slot MUST be Country Race #2 with commented countries (read comment_text on media 18456787783121572; fill the rest with new countries; name requesters' countries in caption). Render: `NRAMPS=9 DROP=200 RACE=2 TEAMS=... EP=N python3 -B country_race.py search 1 61` → pick by drama (lead changes), never by winner; start order is random per seed.] COUNTRY RACE + comment loop (first: 21:47 today): 8 flat flag-coloured balls (simple stripe flags drawn as 2–3 colour bands, no emblems; neutral country mix e.g. USA, Brazil, India, Germany, Japan, Mexico, Ukraine, UK) race down a zig-zag marble track with x2 gates or eliminations; label each ball with a 2–3 letter code; winner card + 'COMMENT YOUR COUNTRY — IT RACES NEXT · FOLLOW @CRUSH.MULTIPLY'. Next races MUST include countries named in comments (read comment_text via Windsor), say so in the caption ('requested by comments: X, Y'). Avoid war/political pairings framed as fights.
 - [ ] TWO-PART CLIFFHANGER: Part 1 = round 1 of a duel (two machines/teams), honest round-1 result, end card 'FINAL ROUND — PART 2 IN 3 HOURS · FOLLOW'. The very next slot posts Part 2 (never skip it). Caption numbers the parts.

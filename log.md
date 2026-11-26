@@ -21,3 +21,12 @@ Main problem: empty, unreadable first seconds. Decisions: D3 opening-bet banner 
 New tonight: press funnel (steep funnel tank, narrow slab, 263 cubes). Best style: dark bg (char/slate). Countries: no data (<100 followers).
 YouTube (Trunik, 3 subs): Ep 15 posted by Kolya (0 views yet, lag); Ep 16 and 17 packages not on the channel yet.
 Council: geo retired, sound hired, data-skeptic rewritten. Rotation: hourglass 2→1.
+
+## 2026-11-26 (day 4 of 90)
+Instagram: 8 posts (variations 5: wheel_dual, gates_spin, blender_twin, press_twin, wheel pad3; new mech 1: geyser; experiment 1: wheel_rush head start; concept 1: Country Race #1). Followers 26 (+7; 11-25 +9). Need ~110/day → ~6% of pace. Est. ~45k views today (Ep17 press funnel 31.8k accrued mostly today) → ~0.16 follows/1k (estimate; follows too few to read per post).
+Top-1 today: Ep17 press funnel (11-25 23:52) 31.8k, skip 23.2% — simple single-machine build. 11-26 posts: no breakout (1.2–3.3k); avg skip 33.4% (worse than 29.9%), avg watch ~12.7 s.
+FIRST COMMENT EVER: 'Poland😍' on Country Race #1 (26 min). Country Race: skip 46.7% (static text-wall opening).
+Experiment (head start wheel_rush): skip 31.0% vs median 31.8% — no win so far.
+Main problem: no carry-over reason to follow + reach per post collapsing (median 24.7k→9k→3.0k→1.8k by day). Decisions: D8 World Ball League (3 slots/day, standings, wildcards from comments; Race 2 with POL 11-27 15:47), D9 banner A/B + 'close to winners' builds in satisfying slots. Pool: wheel, press, gates, blender (twin/dual/spin paused).
+YouTube Trunik: 5 subs, API data lags (to 11-24); only Ep15 on channel; Ep16–25 packages unposted.
+Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 followers).

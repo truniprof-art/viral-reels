@@ -4,15 +4,15 @@
  "belts": 1,
  "blender": 2,
  "gates": 4,
- "wheel": 2,
+ "wheel": 3,
  "bumpers": 0,
  "hourglass": 1,
  "gates_zig": 2,
- "wheel_twin": 2,
- "wheel_dual": 2,
- "gates_spin": 2,
- "geyser": 2,
- "blender_twin": 2,
+ "wheel_twin": 1,
+ "wheel_dual": 1,
+ "gates_spin": 1,
+ "geyser": 1,
+ "blender_twin": 1,
  "wheel_rush": 0,
- "press_twin": 2
+ "press_twin": 1
 }
