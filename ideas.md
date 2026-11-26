@@ -17,7 +17,7 @@ New mechanisms:
 Hit variations (evening):
 - [done 2026-11-26: blender_twin] Blender variation: TWIN counter-rotating 3-arm blades low in one round jar + centre divider that slides shapes into the two blade pockets (second blade starts at 8 s).
 - Wheel pad4 'Will it hit 1000?' with a visible target line in the tank (sharer).
-- Press funnel with TWIN slabs side by side in a W funnel (geo).
+- [done 2026-11-26 19:47: press_twin] Press with TWIN slabs side by side over a W floor (geo) — alternating pistons, 2nd wakes at 9 s.
 - Hourglass rematch as a variation: bigger shapes (BR ~14), x2 neck, faster first turn (viewer/experimenter).
 Experiments (15:47):
 - Same start, two rules: split screen x2 vs x3 from one shape each — counter-intuitive winner (sharer).

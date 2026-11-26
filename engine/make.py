@@ -91,6 +91,21 @@ if kind == "press":
     assert all(p.wait() == 0 for p in ps)
     mux([f"{WORK}/p3p0.mp4", f"{WORK}/p3p1.mp4"], f"{WORK}/p3_audio.wav")
 
+elif kind == "press_twin":                       # 2026-11-26: two alternating presses over a W floor (press hit variation)
+    env.update(ACT2="9", LV="0.55"); cfg = "2.2,1.7,0.7"
+    def ok(s):
+        o = capture(f"import press_twin_sim as p\nr=p.run({cfg},{s},record=False)\ncr=r['HIT']\n"
+                    "n=lambda t:1+int(cr[cr[:,0]<=t][:,1].sum()) if len(cr) else 1\nprint(r['n'],n(5),n(10))")
+        fin, a5, a10 = map(int, o.split())
+        print("press_twin", s, fin, a5, a10, flush=True)
+        return fin >= 500 and a5 <= 3 and a10 <= 12
+    s = pick(ok, seeds[:4]); info.update(seed=s, cfg=cfg)
+    sh(PY + ["press_twin_sim.py", "rec", cfg, str(s)])
+    ps = [subprocess.Popen(PY + ["press_twin_render.py", "render", str(i), "2"], cwd=HERE, env=env) for i in range(2)]
+    sh(PY + ["press_twin_render.py", "audio"])
+    assert all(p.wait() == 0 for p in ps)
+    mux([f"{WORK}/ptp0.mp4", f"{WORK}/ptp1.mp4"], f"{WORK}/pt_audio.wav")
+
 elif kind == "crusher":
     R = dict(ZX="24", ZY="18", S1="50", OPEN="17,17,0,12,12")
     def ok(s):
