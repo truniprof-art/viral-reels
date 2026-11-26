@@ -72,5 +72,14 @@
    "K2": "2",
    "CH1": "0.03"
   }
+ },
+ "gates_spin": {
+  "file": "gates_spin.py",
+  "name": "gates_spin",
+  "min_final": 500,
+  "env": {
+   "CH1": "0.02",
+   "ACT2": "12"
+  }
  }
 }

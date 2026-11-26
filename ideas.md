@@ -46,7 +46,7 @@ Top: press 14:38 (circle:char, NO caption) 25.6k views, skip 24.8%, 15.1 s avg w
 Why: the press is the most "readable" cause in 1 s — a giant slab slowly crushing one ball into two, the slow start builds suspense, then a clean exponential pile-up; dark bg + bright circles = high contrast in feed. Hook text barely mattered (best one had no caption).
 - [done 2026-11-25: press funnel] Press variation: a TRIANGLE tank (funnel) under a narrow press — the pile climbs the funnel walls, same "one slab, one rule" readability.
 - Press variation: two presses stacked on two floors; crushed balls drop to the lower press (cascade, slow then explosive).
-- Gates variation: x2 gate that MOVES (sliding laser bar sweeping up/down) instead of fixed bars.
+- [done 2026-11-26: gates_spin] Gates variation: x2 gate that MOVES — built as a spinning x2 laser rotor (one bar, then a cross at 12 s) instead of fixed bars.
 
 ## 2026-11-23 — weekly trend scan
 - "Will the ball escape?" rotating ring with a gap (https://knowyourmeme.com/memes/will-the-ball-escape-ball-bouncing-brainrot): adapt as a spinning ring tank with one gap; every ball that escapes hits a x2 laser and is fed back — hook "Will they escape before 0:00?".
