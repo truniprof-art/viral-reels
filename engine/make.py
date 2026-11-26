@@ -31,7 +31,7 @@ VARIANTS = {
     "belts":   {"v3cw": {}, "v3ccw": dict(SIGN="-1"), "v2ccw": dict(SIGN="-1", NV="2", PTH="28", ACT="12,0"),
                 "v4cw": dict(NV="4", PTH="20", ACT="11,0,14,17")},
     "blender": {"arm4": {}, "arm3": dict(NARM="3", ARM="200"), "arm6": dict(NARM="6")},
-    "wheel":   {"pad6": {}, "pad4": dict(NP="4"), "pad8": dict(NP="8"), "small": dict(WR="280", CH0="1.4")},
+    "wheel":   {"pad6": {}, "pad4": dict(NP="4"), "pad8": dict(NP="8"), "small": dict(WR="280", CH0="1.4"), "pad3": dict(NP="3", LY="1120")},
     "gates":   {"g3": {}, "g4": dict(GY="850,1020,1190,1360", GACT="0,10,16,21"), "wide": dict(COLW="130")},
     "press":   {"c1": "2.2,1.5,0.7", "c2": "2.0,1.4,0.65", "c3": "2.4,1.6,0.75", "funnel": "2.2,1.5,0.7"},
 }
