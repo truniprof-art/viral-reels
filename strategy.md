@@ -8,6 +8,13 @@ Instagram Reels + YouTube Shorts (added 2026-11-23). TikTok: hands off, per Koly
 Growth (views, watch-through, follows, shares, recognisable identity) drives every decision. Money is the long-term goal and will
 come from a successful account; don't lean on monetization now, just never block it (money.md checks weekly). Carte blanche on tools within the hard limits in agents/README.md.
 
+## MANDATE (Kolya, 2026-11-26 16:30) — 90 DAYS, 10,000 REAL FOLLOWERS
+Full carte blanche: niche, concept, formats, frequency (3–10+/day), timing, full reboot allowed at any time (day 15/30/45 checkpoints).
+Do not keep a concept out of sunk cost; test many concepts, scale the one that converts. Never fake results, never hide failures.
+Hard limits stay: real followers only (no bots/buying), honesty, brand-safe, no copying, profile/credentials/bio only via Kolya, TikTok untouched, YouTube posted by Kolya.
+Diagnosis 11-26: reach works (4 reels >25k), conversion does not (~0.1 follows per 1k views). The north-star metric is now FOLLOWS PER 1K VIEWS.
+If a non-satisfying concept wins (≥3× baseline follows/1k views over ≥3 posts), it takes over more slots and Kolya gets a ready bio/name proposal.
+
 ## Goal from Kolya (FIXED — Kolya 2026-11-26: the goal is never lowered; carte blanche on everything incl. content)
 Target: 10k followers on Instagram by 2027-02-23 ≈ 110 follows/day on average. 2026-11-25: 19 followers, ~9/day.
 In 3 months, build a unique account that attracts advertisers. Learn from and get inspired by what goes viral (our posts and the niche), but never repost identical videos.

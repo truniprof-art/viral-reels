@@ -1,5 +1,11 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-26 — CONCEPT TRACK (D7, slots 15:47 + 21:47): reasons to FOLLOW, not new machines
+- [ ] COUNTRY RACE + comment loop (first: 21:47 today): 8 flat flag-coloured balls (simple stripe flags drawn as 2–3 colour bands, no emblems; neutral country mix e.g. USA, Brazil, India, Germany, Japan, Mexico, Ukraine, UK) race down a zig-zag marble track with x2 gates or eliminations; label each ball with a 2–3 letter code; winner card + 'COMMENT YOUR COUNTRY — IT RACES NEXT · FOLLOW @CRUSH.MULTIPLY'. Next races MUST include countries named in comments (read comment_text via Windsor), say so in the caption ('requested by comments: X, Y'). Avoid war/political pairings framed as fights.
+- [ ] TWO-PART CLIFFHANGER: Part 1 = round 1 of a duel (two machines/teams), honest round-1 result, end card 'FINAL ROUND — PART 2 IN 3 HOURS · FOLLOW'. The very next slot posts Part 2 (never skip it). Caption numbers the parts.
+- [ ] YOU PICK: end card asks 'Pick tomorrow's shape: comment ★ ▲ ●' — next day's reel uses the most-commented one and names it in the caption.
+- [ ] LEAGUE TABLE: recurring 'machines league' — each reel adds points, standings shown at the end (reason to come back).
+
 - [done 2026-11-26 09:47: geyser] Geyser + hoop: air jet from a funnel nozzle shoots shapes up through a floating x2 hoop (basketball-shot feel). Variations later: two hoops at different heights; moving hoop on a circular track; twin geysers racing.
 
 ## 2026-11-25 (23:00) — why the top reels hit + tonight's council ideas
