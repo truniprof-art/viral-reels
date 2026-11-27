@@ -5,7 +5,7 @@ import pymunk, math, random, sys, os, json, subprocess
 import numpy as np, cairo
 
 W, H, FPS = 1080, 1920, 30
-T_GO, T_RACE_END, T_END = 1.4, 30.0, 33.0
+T_GO = 1.4; T_RACE_END = float(os.environ.get("RACE_END", "30")); T_END = T_RACE_END + 3.0
 R = 36
 NR = int(os.environ.get("NRAMPS", "13"))
 DROP = int(os.environ.get('DROP', '150'))
@@ -23,7 +23,7 @@ TITLE = os.environ.get("TITLE", "")
 # MAP features (Kolya 11-27: 'the ball that runs first wins ~90%' — measured 23/29 seeds: leader at 4 s wins).
 # BOOST pads (green chevrons: any ball crossing gets a speed kick along the ramp) and TRAFFIC LIGHTS (a barrier on a ramp
 # that closes/opens on a fixed timer — bunches the field, so an early lead is not safe). Pure physics + fixed timers, no rigging.
-NMIX = int(os.environ.get("NMIX", "0"))   # MIXER sections: a ramp replaced by a peg field (plinko) — reshuffles the order
+NMIX = int(os.environ.get("NMIX", "0")); NSPIN = int(os.environ.get("NSPIN", "4")); NBUMP = int(os.environ.get("NBUMP", "0"))  # NBUMP: pink pinball bumpers (elastic, kick balls back up)   # MIXER sections: a ramp replaced by a peg field (plinko) — reshuffles the order
 NBOOST = int(os.environ.get("NBOOST", "0")); NLIGHT = int(os.environ.get("NLIGHT", "0"))
 BOOSTV = float(os.environ.get("BOOSTV", "1500")); LPER = float(os.environ.get("LPER", "2.6")); LCLOSED = float(os.environ.get("LCLOSED", "1.3"))
 BOOSTS, LIGHTS = [], []
@@ -101,8 +101,11 @@ def build(seed):
     for i in range(NR):
         y = ramp_y(i); drop = DROP
         if i in MIXR:
-            for r_, py in enumerate(range(y - 40, y + DROP + 40, 92)):
-                for px in range(90 + (r_ % 2) * 65, 1010, 130):
+            # entry deflector: throws balls coming off the previous ramp into the middle of the peg field
+            if (i - 1) % 2 == 0: seg((1060, y - 90), (680, y + 10), 12)
+            else: seg((20, y - 90), (400, y + 10), 12)
+            for r_, py in enumerate(range(y + 90, y + DROP + 90, 92)):
+                for px in range(150 + (r_ % 2) * 65, 945, 130):
                     p = pymunk.Circle(st, 11, (px, py)); p.elasticity = .55; p.friction = .3; sp.add(p); deco.append(("mix", px, py, 11))
             continue
         if i % 2 == 0: a, b = (20, y), (860, y + drop)
@@ -120,7 +123,7 @@ def build(seed):
     seg((20, FINISH_Y + 120), (1060, FINISH_Y + 120), 12, e=.1, f=.9)
     # spinners (kinematic bars) on 3 ramps
     spins = []
-    for i in rnd.sample([j for j in range(1, NR - 1) if j not in MIXSET], 4):
+    for i in rnd.sample([j for j in range(1, NR - 1) if j not in MIXSET], min(NSPIN, len([j for j in range(1, NR - 1) if j not in MIXSET]))):
         y = ramp_y(i); cx = 540 + rnd.uniform(-120, 120); cy = y - 95 + (cx - (20 if i % 2 == 0 else 1060)) * 0 + 0
         # place above the ramp line at cx
         a, b = ((20, y), (860, y + DROP)) if i % 2 == 0 else ((1060, y), (220, y + DROP))
@@ -142,6 +145,9 @@ def build(seed):
         u = rr.uniform(.2, .55); a, b = ramp_ends(i); L = math.hypot(b[0] - a[0], b[1] - a[1])
         d = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)
         BOOSTS.append(dict(i=i, u0=u, u1=u + .16, d=d, p0=ramp_pt(i, u), p1=ramp_pt(i, u + .16)))
+    for i in cand[NLIGHT + NBOOST:NLIGHT + NBOOST + NBUMP]:
+        u = rr.uniform(.3, .7); x, y = ramp_pt(i, u); y -= 150
+        bp = pymunk.Circle(st, 30, (x, y)); bp.elasticity = 1.35; bp.friction = .2; sp.add(bp); deco.append(("bump", x, y, 30))
     return sp, gate, balls, segs, deco, spins
 
 def progress(b):
