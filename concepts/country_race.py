@@ -84,7 +84,13 @@ def ball_sprite(code, r=R):
     return s
 
 # ---- world -------------------------------------------------------------------------------------
-def ramp_y(i): return TOP + 260 + i * GAP
+START = os.environ.get("START", "ramp")   # 'mix' = FAIR START: all balls drop together through a peg field and a centre funnel
+SH = 320 if START == "mix" else 560 if START == "drum" else 0
+# START=drum: LOTTERY DRUM — all balls tumble in a spinning drum; at the gate time the bottom of the drum opens and balls
+# drop out in the order the physics mixes them (no start slot is better: release order is shuffled by the drum).
+DRUM_C, DRUM_R, DRUM_N = (540, TOP + 300), 250, 40
+DRUM = {}
+def ramp_y(i): return TOP + 260 + SH + i * GAP
 FINISH_Y = ramp_y(NR - 1) + 250
 def build(seed):
     rnd = random.Random(seed)
@@ -94,9 +100,32 @@ def build(seed):
         s = pymunk.Segment(st, a, b, w / 2); s.elasticity = e; s.friction = f; sp.add(s); segs.append((a, b, w))
     seg((20, 0), (20, FINISH_Y + 400), 24); seg((1060, 0), (1060, FINISH_Y + 400), 24)
     # start box with a gate
-    seg((1060, TOP + 90), (190, TOP + 120), 12)
-    gate = pymunk.Segment(st, (200, TOP + 30), (200, TOP + 115), 6); gate.elasticity = .3; sp.add(gate)
+    if START == "drum":
+        kb = pymunk.Body(body_type=pymunk.Body.KINEMATIC); kb.position = DRUM_C; kb.angle = rnd.uniform(0, 2 * math.pi); kb.angular_velocity = float(os.environ.get("DRUMW", "2.2")) * rnd.uniform(.9, 1.1)
+        dsegs = []
+        for j in range(DRUM_N):
+            a0, a1 = 2 * math.pi * j / DRUM_N, 2 * math.pi * (j + 1) / DRUM_N
+            sh = pymunk.Segment(kb, (DRUM_R * math.cos(a0), DRUM_R * math.sin(a0)), (DRUM_R * math.cos(a1), DRUM_R * math.sin(a1)), 7)
+            sh.elasticity = .5; sh.friction = .6; dsegs.append(sh)
+        # inner paddles so the balls really tumble
+        for j in range(3):
+            a = 2 * math.pi * j / 3; sh = pymunk.Segment(kb, (DRUM_R * .55 * math.cos(a), DRUM_R * .55 * math.sin(a)), (DRUM_R * .98 * math.cos(a), DRUM_R * .98 * math.sin(a)), 7)
+            sh.elasticity = .5; sh.friction = .6; dsegs.append(sh)
+        sp.add(kb, *dsegs); DRUM.clear(); DRUM.update(body=kb, segs=dsegs, open=set())
+        gate = pymunk.Segment(st, (-500, -500), (-499, -500), 1); sp.add(gate)   # dummy: opening handled in simulate
+        seg((20, DRUM_C[1] + 140), (300, DRUM_C[1] + 330), 12); seg((1060, DRUM_C[1] + 140), (780, DRUM_C[1] + 330), 12)
+    elif START == "mix":
+        gate = pymunk.Segment(st, (32, TOP + 90), (1048, TOP + 90), 6); gate.elasticity = .1; sp.add(gate)
+        po = rnd.uniform(-65, 65)   # random peg offset per race: no start slot is systematically lucky
+        for r_, py in enumerate(range(TOP + 175, TOP + 345, 85)):
+            for px in [q + po for q in range(215 + (r_ % 2) * 65, 880, 130)]:
+                p = pymunk.Circle(st, 11, (px, py)); p.elasticity = .55; p.friction = .3; sp.add(p); deco.append(("mix", px, py, 11))
+        HW = int(os.environ.get("HOLE", "120")) / 2; seg((20, TOP + 400), (540 - HW, TOP + 480), 12); seg((1060, TOP + 400), (540 + HW, TOP + 480), 12)
+    else:
+        seg((1060, TOP + 90), (190, TOP + 120), 12)
+        gate = pymunk.Segment(st, (200, TOP + 30), (200, TOP + 115), 6); gate.elasticity = .3; sp.add(gate)
     rm = random.Random(seed * 13 + 5); MIXR = set(rm.sample(range(2, NR - 2), NMIX)) if NMIX else set()
+    if NMIX and os.environ.get("MIXLATE"): MIXR = {NR - 3} | (set(rm.sample(range(2, NR - 5), NMIX - 1)) if NMIX > 1 else set())
     global MIXSET; MIXSET = MIXR
     for i in range(NR):
         y = ramp_y(i); drop = DROP
@@ -130,9 +159,14 @@ def build(seed):
         u = (cx - a[0]) / (b[0] - a[0]); ry = a[1] + (b[1] - a[1]) * u; cy = ry - 120
         kb = pymunk.Body(body_type=pymunk.Body.KINEMATIC); kb.position = (cx, cy); kb.angular_velocity = (-1 if i % 2 == 0 else 1) * rnd.uniform(2.4, 3.4)
         L = 92; sh = pymunk.Segment(kb, (-L, 0), (L, 0), 9); sh.elasticity = .6; sh.friction = .5; sp.add(kb, sh); spins.append((kb, L))
-    balls = []; slots = list(range(len(TEAMS))); rnd.shuffle(slots)   # random start order (fair: no fixed pole position)
+    balls = []; slots = list(range(len(TEAMS))); rnd.shuffle(slots); global SLOTS; SLOTS = slots   # random start order (fair: no fixed pole position)
     for k, code in enumerate(TEAMS):
-        b = pymunk.Body(1, pymunk.moment_for_circle(1, 0, R)); b.position = (250 + slots[k] * 100 + rnd.uniform(-6, 6), TOP + 40 - (slots[k] % 2) * 40)
+        b = pymunk.Body(1, pymunk.moment_for_circle(1, 0, R))
+        if START == "drum":
+            ang = 2 * math.pi * (slots[k] + .5) / len(TEAMS); rr_ = 95 if slots[k] % 2 else 165
+            b.position = (DRUM_C[0] + rr_ * math.cos(ang), DRUM_C[1] + rr_ * math.sin(ang))
+        elif START == "mix": b.position = (95 + slots[k] * 890 / max(1, len(TEAMS) - 1) + rnd.uniform(-4, 4), TOP + 45)
+        else: b.position = (250 + slots[k] * 100 + rnd.uniform(-6, 6), TOP + 40 - (slots[k] % 2) * 40)
         c = pymunk.Circle(b, R); c.elasticity = .45; c.friction = .5; sp.add(b, c); balls.append(b)
     BOOSTS.clear(); LIGHTS.clear()
     rr = random.Random(seed * 7 + 1)
@@ -155,7 +189,7 @@ def progress(b):
     x, y = b.position
     if y >= FINISH_Y: return 1000 + y
     i = int((y - ramp_y(0) + 120) // GAP); i = max(-1, min(NR - 1, i))
-    if i < 0: return -1 + (1 - x / 1080)   # start ramp rolls right-to-left
+    if i < 0: return (-1 + min(.99, y / ramp_y(0))) if START in ("mix", "drum") else (-1 + (1 - x / 1080))   # start area
     f = x / 1080 if i % 2 == 0 else 1 - x / 1080
     return i + f + (y - ramp_y(i)) / 1e4
 
@@ -167,7 +201,13 @@ def simulate(seed):
     h = sp.add_collision_handler(0, 0) if hasattr(sp, "add_collision_handler") else None
     for f in range(nF):
         for _ in range(8):
-            if t >= GO_SIM and gate in sp.shapes: sp.remove(gate); sounds.append((t, "gate"))
+            if t >= GO_SIM and gate in sp.shapes:
+                sp.remove(gate); sounds.append((t, "gate"))
+                if DRUM:   # open the drum where it is at the bottom right now (a 3-segment door that keeps turning)
+                    kb = DRUM["body"]
+                    for j, sh in enumerate(DRUM["segs"][:DRUM_N]):
+                        am = kb.angle + 2 * math.pi * (j + .5) / DRUM_N
+                        if max(math.cos(am - math.pi / 2 - q * 2 * math.pi / 3) for q in range(3)) > math.cos(math.radians(20)): sp.remove(sh); DRUM["open"].add(j)   # one door per paddle sector
             for Lg in LIGHTS:
                 closed = ((t + Lg["ph"]) % LPER) < LCLOSED
                 if closed and not Lg["on"]:
@@ -195,7 +235,7 @@ def simulate(seed):
             for k, b in enumerate(balls):
                 vx, vy = b.velocity; pv = frames[-1]["v"][k]
                 if abs(vx - pv[0]) + abs(vy - pv[1]) > 260: sounds.append((t, "tick%d" % k))
-        frames.append({"b": st, "v": [tuple(b.velocity) for b in balls], "s": [(kb.angle) for kb, L in spins], "p": [progress(b) for b in balls], "L": [Lg["on"] for Lg in LIGHTS]})
+        frames.append({"b": st, "v": [tuple(b.velocity) for b in balls], "s": [(kb.angle) for kb, L in spins], "p": [progress(b) for b in balls], "L": [Lg["on"] for Lg in LIGHTS], "D": (DRUM["body"].angle if DRUM else 0)})
     if PRE:
         off = int(PRE * FPS); frames = frames[off:]; fin = {k: v - PRE for k, v in fin.items()}
         sounds = [(te - PRE, kd) for te, kd in sounds if te - PRE >= 0]
@@ -259,7 +299,22 @@ def render(seed, out):
         text(c, "FINISH", 540, FINISH_Y + 100, 60, (*GOLD, 1), True, 10)
         for (a, b, w) in segs:
             c.set_source_rgb(.78, .8, .86); c.set_line_width(w); c.set_line_cap(cairo.LINE_CAP_ROUND); c.move_to(*a); c.line_to(*b); c.stroke()
-        if t < GO_SIM - PRE:
+        if DRUM:
+            da = fr["D"]; cx_, cy_ = DRUM_C
+            c.set_source_rgba(1, 1, 1, .05); c.arc(cx_, cy_, DRUM_R, 0, 7); c.fill()
+            c.set_source_rgb(.35, .8, 1); c.set_line_width(14); c.set_line_cap(cairo.LINE_CAP_ROUND)
+            for j in range(DRUM_N):
+                if j in DRUM["open"] and t >= GO_SIM - PRE: continue
+                a0, a1 = da + 2 * math.pi * j / DRUM_N, da + 2 * math.pi * (j + 1) / DRUM_N
+                c.arc(cx_, cy_, DRUM_R, a0, a1 + .01); c.stroke()
+            c.set_line_width(12)
+            for j in range(3):
+                a = da + 2 * math.pi * j / 3; c.move_to(cx_ + DRUM_R * .55 * math.cos(a), cy_ + DRUM_R * .55 * math.sin(a))
+                c.line_to(cx_ + DRUM_R * .98 * math.cos(a), cy_ + DRUM_R * .98 * math.sin(a)); c.stroke()
+            c.arc(cx_, cy_, 16, 0, 7); c.set_source_rgb(.2, .2, .25); c.fill()
+        if t < GO_SIM - PRE and START == "mix":
+            c.set_source_rgb(*GOLD); c.set_line_width(8); c.move_to(32, TOP + 90); c.line_to(1048, TOP + 90); c.stroke()
+        elif t < GO_SIM - PRE:
             c.set_source_rgb(*GOLD); c.set_line_width(8); c.move_to(200, TOP + 30); c.line_to(200, TOP + 115); c.stroke()
         for Bo in BOOSTS:
             (x0, y0), (x1, y1) = Bo["p0"], Bo["p1"]; dx, dy = Bo["d"]; nx, ny = dy, -dx
