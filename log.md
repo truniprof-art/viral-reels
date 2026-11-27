@@ -31,3 +31,4 @@ Main problem: no carry-over reason to follow + reach per post collapsing (median
 YouTube Trunik: 5 subs, API data lags (to 11-24); only Ep15 on channel; Ep16–25 packages unposted.
 Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 followers).
 - 2026-11-27 01:47 Ep26 gates wide (hit variation, D9 arm B no banner), IG 18647205730065188; YT package sent. Caption says 'our most-watched build' — loose: gates g3 (24.6k) is one of the breakouts, wheel pad4 (56k) is the top; avoid this phrase.
+- 2026-11-27 03:47 Ep27 press wide (hit variation, D9 arm A banner), IG 18081878702409716; YT package sent. MISTAKE: caption again says 'Our most-watched machine' — wrong (press 36.9k < wheel pad4 58k); don't use 'most-watched' for anything except wheel pad4.
