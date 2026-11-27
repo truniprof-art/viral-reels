@@ -7,6 +7,7 @@ CONCEPT TRACK (top = next):
 - League format 2: 'TOP-2 DUEL' — the two leaders 1-vs-1 on a short track (~15 s), points count (sharer). Sendable to a rival-country friend.
 - League format 3: 'ELIMINATION' — last ball out each ramp, last one standing gets bonus points (real sim).
 New mechanisms:
+- [done 2026-11-27 09:47: portal] Portal pegboard: IN portal in a funnel floor, OUT ×2 portal at the top, plinko pegs between (own idea; continuous self-feeding).
 - Cascade press: 3 stacked slabs, shapes double on each floor (old, still open).
 - Big-shape conveyor oven: a single wide belt carries shapes through a glowing x2 'oven' arch — one large readable cause (viewer: readability first).
 Hit variations (close to winners, D9):

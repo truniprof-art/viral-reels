@@ -114,5 +114,11 @@
    "WE": "0.8",
    "MAXN": "1000"
   }
+ },
+ "portal": {
+  "file": "portal.py",
+  "name": "portal",
+  "min_final": 500,
+  "env": {}
  }
 }
