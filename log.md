@@ -33,3 +33,4 @@ Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 fol
 - 2026-11-27 01:47 Ep26 gates wide (hit variation, D9 arm B no banner), IG 18647205730065188; YT package sent. Caption says 'our most-watched build' — loose: gates g3 (24.6k) is one of the breakouts, wheel pad4 (56k) is the top; avoid this phrase.
 - 2026-11-27 03:47 Ep27 press wide (hit variation, D9 arm A banner), IG 18081878702409716; YT package sent. MISTAKE: caption again says 'Our most-watched machine' — wrong (press 36.9k < wheel pad4 58k); don't use 'most-watched' for anything except wheel pad4.
 - 2026-11-27 09:51 Ep28 portal (NEW mech, D9 arm B, square:char) IG 18148897006600552; YT package sent to Kolya.
+- 2026-11-27 12:47 Ep29 wheel pad5 (hit variation, D9 arm A banner, hex:slate) IG 18123471563056813; YT package sent to Kolya.
