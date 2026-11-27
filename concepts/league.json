@@ -47,17 +47,38 @@
     "FRA"
    ],
    "media_id": "17959585320266315"
+  },
+  {
+   "race": 3,
+   "ep": 32,
+   "date": "2026-11-27 21:47",
+   "seed": 6,
+   "env": "START=drum MIXLATE=1 PRE=3.6 GO_SIM=4.0 RACE_END=36 NRAMPS=11 NBOOST=3 NLIGHT=2 NMIX=2 NBUMP=3 NSPIN=6 G=2600 DROP=200 TEAMS=BRA,IND,NGA,UKR,GER,JPN,FRA,USA,POL (FAIR MAP)",
+   "standings": [
+    "IND",
+    "BRA",
+    "USA",
+    "UKR",
+    "JPN",
+    "GER",
+    "POL",
+    "NGA",
+    "FRA"
+   ],
+   "media_id": "18119675315122258",
+   "story_id": "18128179699902765",
+   "prompt_comment_id": "17920438470264245"
   }
  ],
  "table": {
-  "BRA": 18,
-  "NGA": 16,
-  "IND": 14,
-  "GER": 9,
-  "UKR": 7,
-  "JPN": 4,
-  "USA": 4,
-  "POL": 4,
+  "BRA": 26,
+  "IND": 24,
+  "NGA": 17,
+  "GER": 12,
+  "UKR": 12,
+  "USA": 10,
+  "JPN": 8,
+  "POL": 6,
   "FRA": 2
  },
  "wildcards_pending": [],

@@ -35,3 +35,5 @@ Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 fol
 - 2026-11-27 09:51 Ep28 portal (NEW mech, D9 arm B, square:char) IG 18148897006600552; YT package sent to Kolya.
 - 2026-11-27 12:47 Ep29 wheel pad5 (hit variation, D9 arm A banner, hex:slate) IG 18123471563056813; YT package sent to Kolya.
 - 2026-11-27 19:50: Ep31 gates g2 (2 fast gates, pill:navy, D9 arm B) posted IG 18122686666955921; YT package sent to Kolya. No new organic comments to reply to (D14).
+
+- 2026-11-27 21:50 Ep32 League Race #3 (fair map, drum start, seed 6, IND won) → IG 18119675315122258; story after race 3 18128179699902765; prompt comment 17920438470264245 (Kolya to pin). No new organic comments to reply to. Note: caption mentioned the post-race table (minor spoiler) — next race captions use the PRE-race table.
