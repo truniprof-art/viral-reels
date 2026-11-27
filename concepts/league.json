@@ -1,6 +1,6 @@
 {
  "name": "World Ball League — Season 1",
- "rules": "Points per race from the REAL simulated final standings (finish order, then distance for balls not finished): 10,8,6,5,4,3,2,1 for places 1-8, 0 below. Never rig. Countries requested in comments join as WILDCARDS with 0 pts (named in caption: 'requested by @user'). Season 1 = 6 races (D16, 2026-11-27): Race #4 11-28 01:47, Race #5 11-28 15:47, FINALE Race #6 11-28 21:47 Kyiv; show "RACE n OF 6" on screen and in captions. Season 2 only if organic comments arrive.",
+ "rules": "Points per race from the REAL simulated final standings (finish order, then distance for balls not finished): 10,8,6,5,4,3,2,1 for places 1-8, 0 below. Never rig. Countries requested in comments join as WILDCARDS with 0 pts (named in caption: 'requested by @user'). Season 1 = 6 races (D16, 2026-11-27): Race #4 11-28 01:47, Race #5 11-28 15:47, FINALE Race #6 11-28 21:47 Kyiv; show 'RACE n OF 6' on screen and in captions. Season 2 only if organic comments arrive.",
  "points": [
   10,
   8,
@@ -68,18 +68,39 @@
    "media_id": "18119675315122258",
    "story_id": "18128179699902765",
    "prompt_comment_id": "17920438470264245"
+  },
+  {
+   "race": 4,
+   "ep": 34,
+   "date": "2026-11-28 01:50",
+   "seed": 15,
+   "env": "START=drum MIXLATE=1 PRE=3.6 GO_SIM=4.0 RACE_END=36 NRAMPS=11 NBOOST=1 NLIGHT=1 NMIX=2 NBUMP=6 NSPIN=4 G=2600 DROP=200 TEAMS=BRA,IND,NGA,UKR,GER,JPN,FRA,USA,POL (FAIR MAP, bumper map)",
+   "standings": [
+    "UKR",
+    "GER",
+    "NGA",
+    "JPN",
+    "FRA",
+    "USA",
+    "POL",
+    "BRA",
+    "IND"
+   ],
+   "media_id": "18422992843085684",
+   "story_id": "18129546812487326",
+   "prompt_comment_id": "18161023681502554"
   }
  ],
  "table": {
-  "BRA": 26,
+  "BRA": 27,
   "IND": 24,
-  "NGA": 17,
-  "GER": 12,
-  "UKR": 12,
-  "USA": 10,
-  "JPN": 8,
-  "POL": 6,
-  "FRA": 2
+  "NGA": 23,
+  "UKR": 22,
+  "GER": 20,
+  "USA": 13,
+  "JPN": 13,
+  "POL": 8,
+  "FRA": 6
  },
  "wildcards_pending": [],
  "wildcards_joined": [
