@@ -11,7 +11,7 @@ New mechanisms:
 - Big-shape conveyor oven: a single wide belt carries shapes through a glowing x2 'oven' arch — one large readable cause (viewer: readability first).
 Hit variations (close to winners, D9):
 - wheel pad5 (NP 5) with rings on slate — 1 param from pad4.
-- press base with a wider slab (PX0 260/PX1 820) on char — 1 param from the 36.9k press.
+- [done Ep27 press wide, PX 300–780 + shallow floor, plum] press base with a wider slab (PX0 260/PX1 820) on char — 1 param from the 36.9k press.
 - gates base with 2 gates only (bigger gap, bigger shapes) on dark bg.
 Experiments:
 - Climax cold-open: first 1.2 s = the real final frame of the same run ('1 → 900 in 30 s. Watch how'), then 0:30 (viewer; next candidate after D9).
