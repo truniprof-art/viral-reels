@@ -1,10 +1,71 @@
 {
  "name": "World Ball League — Season 1",
  "rules": "Points per race from the REAL simulated final standings (finish order, then distance for balls not finished): 10,8,6,5,4,3,2,1 for places 1-8, 0 below. Never rig. Countries requested in comments join as WILDCARDS with 0 pts (named in caption: 'requested by @user'). Season = 20 races; finale date announced when fixed.",
- "points": [10, 8, 6, 5, 4, 3, 2, 1],
- "races": [
-  {"race": 1, "ep": 24, "date": "2026-11-26 21:55", "seed": 20, "env": "NRAMPS=9 DROP=200", "standings": ["BRA", "IND", "NGA", "UKR", "GER", "JPN", "FRA", "USA"]}
+ "points": [
+  10,
+  8,
+  6,
+  5,
+  4,
+  3,
+  2,
+  1
  ],
- "table": {"BRA": 10, "IND": 8, "NGA": 6, "UKR": 5, "GER": 4, "JPN": 3, "FRA": 2, "USA": 1},
- "wildcards_pending": [{"code": "POL", "requested_by": "comment on Ep24 (2026-11-26 20:19 UTC)", "joins": "race 2"}]
+ "races": [
+  {
+   "race": 1,
+   "ep": 24,
+   "date": "2026-11-26 21:55",
+   "seed": 20,
+   "env": "NRAMPS=9 DROP=200",
+   "standings": [
+    "BRA",
+    "IND",
+    "NGA",
+    "UKR",
+    "GER",
+    "JPN",
+    "FRA",
+    "USA"
+   ]
+  },
+  {
+   "race": 2,
+   "ep": 30,
+   "date": "2026-11-27 15:52",
+   "seed": 24,
+   "env": "NRAMPS=9 DROP=200 PRE=2.2 GO_SIM=0.1 TEAMS=BRA,IND,NGA,UKR,GER,JPN,FRA,USA,POL",
+   "standings": [
+    "NGA",
+    "BRA",
+    "IND",
+    "GER",
+    "POL",
+    "USA",
+    "UKR",
+    "JPN",
+    "FRA"
+   ],
+   "media_id": "17959585320266315"
+  }
+ ],
+ "table": {
+  "BRA": 18,
+  "NGA": 16,
+  "IND": 14,
+  "GER": 9,
+  "UKR": 7,
+  "JPN": 4,
+  "USA": 4,
+  "POL": 4,
+  "FRA": 2
+ },
+ "wildcards_pending": [],
+ "wildcards_joined": [
+  {
+   "code": "POL",
+   "requested_by": "comment on Ep24 (it was Kolya's own seed comment; framed only as 'requested in the comments')",
+   "joined": "race 2"
+  }
+ ]
 }

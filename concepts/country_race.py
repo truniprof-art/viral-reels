@@ -14,6 +14,12 @@ TOP = 420
 SNAPS = [float(q) for q in os.environ.get('SNAPS', '').split(',') if q]
 RACE = os.environ.get("RACE", "1")
 EP = os.environ.get("EP", "")
+PRE = float(os.environ.get("PRE", "0"))            # D8: pre-roll seconds simulated before frame 0 (first frame already moving)
+GO_SIM = float(os.environ.get("GO_SIM", str(T_GO)))  # sim time the gate opens
+OPENER = os.environ.get("OPENER", "")              # one short line over the first ~2.4 s (no text wall)
+LEAGUE = os.environ.get("LEAGUE", "")              # path to league.json -> end card shows standings after this race
+NEXT = os.environ.get("NEXT", "")                  # e.g. "RACE #3 TONIGHT"
+TITLE = os.environ.get("TITLE", "")
 TEAMS = os.environ.get("TEAMS", "USA,BRA,IND,GER,JPN,UKR,FRA,NGA").split(",")
 BG = (.06, .07, .13)
 INK = (1, 1, 1)
@@ -111,21 +117,21 @@ def progress(b):
     """track progress: ramp index + fraction along it (higher = further)."""
     x, y = b.position
     if y >= FINISH_Y: return 1000 + y
-    i = int((y - ramp_y(0) + GAP * .5) // GAP); i = max(-1, min(NR - 1, i))
-    if i < 0: return -1 + x / 1080
+    i = int((y - ramp_y(0) + 120) // GAP); i = max(-1, min(NR - 1, i))
+    if i < 0: return -1 + (1 - x / 1080)   # start ramp rolls right-to-left
     f = x / 1080 if i % 2 == 0 else 1 - x / 1080
     return i + f + (y - ramp_y(i)) / 1e4
 
 def simulate(seed):
     sp, gate, balls, segs, deco, spins = build(seed)
     dt = 1 / FPS / 8; frames = []; fin = {}; t = 0.0; sounds = []
-    nF = int(T_END * FPS)
+    nF = int((T_END + PRE) * FPS)
     hits = {}
     h = sp.add_collision_handler(0, 0) if hasattr(sp, "add_collision_handler") else None
     for f in range(nF):
         for _ in range(8):
-            if t >= T_GO and gate in sp.shapes: sp.remove(gate); sounds.append((t, "gate"))
-            if t < T_RACE_END: sp.step(dt)
+            if t >= GO_SIM and gate in sp.shapes: sp.remove(gate); sounds.append((t, "gate"))
+            if t < T_RACE_END + PRE: sp.step(dt)
             t += dt
             for k, b in enumerate(balls):
                 if k not in fin and b.position.y > FINISH_Y: fin[k] = t; sounds.append((t, "fin%d" % len(fin)))
@@ -136,6 +142,9 @@ def simulate(seed):
                 vx, vy = b.velocity; pv = frames[-1]["v"][k]
                 if abs(vx - pv[0]) + abs(vy - pv[1]) > 260: sounds.append((t, "tick%d" % k))
         frames.append({"b": st, "v": [tuple(b.velocity) for b in balls], "s": [(kb.angle) for kb, L in spins], "p": [progress(b) for b in balls]})
+    if PRE:
+        off = int(PRE * FPS); frames = frames[off:]; fin = {k: v - PRE for k, v in fin.items()}
+        sounds = [(te - PRE, kd) for te, kd in sounds if te - PRE >= 0]
     order = sorted(fin, key=fin.get)
     return frames, fin, order, (segs, deco, [(kb.position.x, kb.position.y, L) for kb, L in spins]), sounds
 
@@ -169,6 +178,12 @@ def render(seed, out):
     frames, fin, order, (segs, deco, spins), sounds = simulate(seed)
     spr = [ball_sprite(code) for code in TEAMS]; mini = [ball_sprite(code, 20) for code in TEAMS]
     camy = None
+    global TABLE; TABLE = []
+    if LEAGUE:
+        lg = json.load(open(LEAGUE)); pts = dict(lg["table"]); gain = {}
+        for p_, k in enumerate(order[:len(lg["points"])]): gain[TEAMS[k]] = lg["points"][p_]
+        for code in TEAMS: pts[code] = pts.get(code, 0) + gain.get(code, 0)
+        TABLE = sorted(((c_, v, gain.get(c_, 0)) for c_, v in pts.items()), key=lambda r: (-r[1], -r[2]))
     if SNAPS: ff = None
     else: ff = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgra", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "medium", out + ".v.mp4"], stdin=subprocess.PIPE)
@@ -190,7 +205,7 @@ def render(seed, out):
         text(c, "FINISH", 540, FINISH_Y + 100, 60, (*GOLD, 1), True, 10)
         for (a, b, w) in segs:
             c.set_source_rgb(.78, .8, .86); c.set_line_width(w); c.set_line_cap(cairo.LINE_CAP_ROUND); c.move_to(*a); c.line_to(*b); c.stroke()
-        if t < T_GO:
+        if t < GO_SIM - PRE:
             c.set_source_rgb(*GOLD); c.set_line_width(8); c.move_to(200, TOP + 30); c.line_to(200, TOP + 115); c.stroke()
         for kind, x, y, r in deco:
             c.arc(x, y, r, 0, 7); c.set_source_rgb(*((.95, .35, .5) if kind == "bump" else (.6, .62, .7))); c.fill()
@@ -204,15 +219,19 @@ def render(seed, out):
         c.restore()
         # HUD: title + live standings
         c.set_source_rgba(*BG, .88); c.rectangle(0, 0, W, 250); c.fill()
-        text(c, f"COUNTRY RACE #{RACE}", 540, 70, 54, (*GOLD, 1), True, 4)
+        text(c, TITLE or f"COUNTRY RACE #{RACE}", 540, 70, 50 if TITLE else 54, (*GOLD, 1), True, 3)
         for j, k in enumerate(rank):
-            x = 75 + j * 133; y = 160
+            x = W / len(TEAMS) * (j + .5); y = 160
             s = mini[k]; c.set_source_surface(s, x - s.get_width() / 2, y - s.get_height() / 2 - 8); c.paint()
             text(c, f"{j + 1}", x, y - 42, 24, (1, 1, 1, .6), True)
             text(c, TEAMS[k], x, y + 44, 26, ((*GOLD, 1) if j == 0 else (1, 1, 1, .9)), True)
         rem = max(0, T_RACE_END - t); text(c, f"0:{int(math.ceil(rem)):02d}", 1000, 70, 40, (1, 1, 1, .7), True, 0)
         # opener bet (0–2.6 s)
-        if t < 2.6:
+        if OPENER and t < 2.6:
+            a = 1 if t < 2.1 else (2.6 - t) / .5
+            c.set_source_rgba(*GOLD, .95 * a); c.rectangle(0, 250, W, 96); c.fill()
+            text(c, OPENER, 540, 314, 44, (.08, .08, .1, a), True, 2)
+        elif not OPENER and t < 2.6:
             a = 1 if t < 2.1 else (2.6 - t) / .5
             c.set_source_rgba(*BG, .82 * a); c.rectangle(90, 640, 900, 230); c.fill()
             text(c, "8 COUNTRIES. 1 WINNER.", 540, 730, 64, (1, 1, 1, a), True, 2)
@@ -222,7 +241,7 @@ def render(seed, out):
             u = t - 12; a = min(1, u / .25, (2.2 - u) / .3)
             c.set_source_rgba(*GOLD, .93 * a); c.rectangle(110, 1712, 860, 110); c.fill()
             text(c, "FOLLOW @CRUSH.MULTIPLY", 540, 1762, 42, (.08, .08, .1, a), True, 4)
-            text(c, "comment your country — it can race next", 540, 1804, 30, (.08, .08, .1, .85 * a), False, 1)
+            text(c, ("comment your country — it joins the league" if LEAGUE else "comment your country — it can race next"), 540, 1804, 30, (.08, .08, .1, .85 * a), False, 1)
         # finish flash banners
         for p, k in enumerate(sorted(fin, key=fin.get)[:3]):
             if fin[k] <= t < fin[k] + 1.6 and t < T_RACE_END:
@@ -230,7 +249,27 @@ def render(seed, out):
                 y0 = 1000 + p * 120; c.set_source_rgba(*BG, .8 * a); c.rectangle(240, y0 - 85, 600, 110); c.fill()
                 text(c, ["1ST", "2ND", "3RD"][p] + "  " + TEAMS[k], 540, y0, 84, ((*GOLD, a) if p == 0 else (1, 1, 1, a)), True, 4)
         # end card
-        if t >= T_RACE_END:
+        if t >= T_RACE_END and LEAGUE:
+            a = min(1, (t - T_RACE_END) / .3)
+            c.set_source_rgba(*BG, .92 * a); c.paint()
+            if EP: text(c, f"EPISODE {EP} · WORLD BALL LEAGUE · RACE #{RACE}", 540, 170, 30, (1, 1, 1, .55 * a), True, 3)
+            big = ball_sprite(TEAMS[order[0]], 80); c.set_source_surface(big, 300 - big.get_width() / 2, 215); c.paint_with_alpha(a)
+            text(c, "RACE WINNER", 640, 290, 38, (1, 1, 1, .75 * a), True, 6, "l")
+            text(c, TEAMS[order[0]], 640, 390, 100, (*GOLD, a), True, 6, "l")
+            text(c, "LEAGUE TABLE", 540, 520, 46, (1, 1, 1, .9 * a), True, 8)
+            for j, (code, pts, gain) in enumerate(TABLE[:5]):
+                y0 = 600 + j * 92; c.set_source_rgba(1, 1, 1, (.10 if j else .18) * a); c.rectangle(150, y0 - 10, 780, 80); c.fill()
+                text(c, f"{j + 1}", 200, y0 + 46, 44, (1, 1, 1, .6 * a), True)
+                s_ = ball_sprite(code, 26); c.set_source_surface(s_, 250, y0 - 3); c.paint_with_alpha(a)
+                text(c, code, 330, y0 + 46, 48, ((*GOLD, a) if j == 0 else (1, 1, 1, a)), True, 3, "l")
+                if gain: text(c, f"+{gain}", 700, y0 + 46, 34, (.55, .9, .6, a), True, 0, "r")
+                text(c, f"{pts} PTS", 900, y0 + 46, 44, (1, 1, 1, a), True, 1, "r")
+            c.set_source_rgba(*GOLD, a); c.rectangle(80, 1100, 920, 360); c.fill()
+            text(c, "COMMENT YOUR COUNTRY", 540, 1180, 58, (.08, .08, .1, a), True, 3)
+            text(c, "requested countries join as wildcards", 540, 1240, 36, (.08, .08, .1, a), False, 1)
+            text(c, NEXT or f"RACE #{int(RACE) + 1} NEXT", 540, 1320, 52, (.08, .08, .1, a), True, 3)
+            text(c, "FOLLOW @CRUSH.MULTIPLY", 540, 1410, 48, (.08, .08, .1, a), True, 4)
+        elif t >= T_RACE_END:
             a = min(1, (t - T_RACE_END) / .3)
             c.set_source_rgba(*BG, .9 * a); c.paint()
             if EP: text(c, f"EPISODE {EP} · COUNTRY RACE #{RACE}", 540, 330, 32, (1, 1, 1, .55 * a), True, 4)
@@ -276,7 +315,7 @@ def audio(sounds, fin, order, path):
         if kind.startswith("tick"):
             kk = int(kind[4:])
             if te - last.get(kk, -1) < .08: continue
-            last[kk] = te; k = tt(.12); add(te, .12 * np.sin(2 * np.pi * notes[kk] * k) * np.exp(-k * 40))
+            last[kk] = te; k = tt(.12); add(te, .12 * np.sin(2 * np.pi * notes[kk % len(notes)] * (1.5 if kk >= len(notes) else 1) * k) * np.exp(-k * 40))
         elif kind == "gate":
             k = tt(.5); add(te, .4 * np.sin(2 * np.pi * 220 * k) * np.exp(-k * 6))
         elif kind.startswith("fin"):
