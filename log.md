@@ -37,3 +37,14 @@ Council: +showrunner, −sharer, 4 roles rewritten. Countries: no data (<100 fol
 - 2026-11-27 19:50: Ep31 gates g2 (2 fast gates, pill:navy, D9 arm B) posted IG 18122686666955921; YT package sent to Kolya. No new organic comments to reply to (D14).
 
 - 2026-11-27 21:50 Ep32 League Race #3 (fair map, drum start, seed 6, IND won) → IG 18119675315122258; story after race 3 18128179699902765; prompt comment 17920438470264245 (Kolya to pin). No new organic comments to reply to. Note: caption mentioned the post-race table (minor spoiler) — next race captions use the PRE-race table.
+- 2026-11-27 23:50 Ep33 press chunky (hit variation, D9 arm A) IG 18115382447162451; YT package sent. followers=36
+
+## 2026-11-27 (night) — day 2 of 90
+Instagram: 8 posts (hit variations 4: gates wide, press wide, wheel pad5, gates g2 + press chunky at 23:50; new mech 1: portal; league 2: Race #2, Race #3). Followers 36 (+10; need ~110/day → ~9% of pace). Views today 43.8k (93k→70k→50k→44k: falling 3 days). Follows/1k ≈0.23 (0.14 yesterday; noise range wide).
+Top-1: Ep29 wheel pad5 (12:47) 23.6k, skip 21.1%, avg 16.5 s, first organic comment ('👏👏👏', replied) — pad4-family build on dark slate, banner arm A. #2 press wide 10.1k (22.1%). New mech portal 1.7k (6/6 new mechs <2.1k).
+Avg skip today ~25.6% (satisfying ~24.4%, league 31–34%), avg watch ~14.6 s. ER (likes+saves+shares)/reach ≈0.5%.
+League (concept track): Race 2 1.65k / skip 31.4% (Race 1 46.7% → the moving first frame works), Race 3 143 @2 h; 0 organic comments in 3 races.
+Experiment (Race 2 first frame): skip −15 pp — kept. D9 A/B leans banner (A 21–22% vs B 25–31%) but confounded with kind → re-matched.
+YouTube Trunik: 7 subs (+2). Ep15 1.17k / Ep19 755 / Ep17 525 views; Ep20–32 posted, API lag. Unposted packages: Ep16, 18, 25, 26, 33.
+Main problem: the format people watch (hits) and the one with a reason to follow (league) are different videos; hits answer their own question. Decisions: D15 Part 2 chain on 19:47/23:47 (Part 2 posted first) + per-run follower log; D16 League Season 1 = 6 races, finale 11-28 21:47, then Birth-Month Machine test.
+Council: +distribution; viewer, creative-director, recruiter rewritten. Countries: no data (<100 followers).

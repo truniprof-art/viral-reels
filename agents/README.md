@@ -38,6 +38,7 @@ Kolya (2026-11-24): every night, find THE problem and make radical decisions. Th
 - `recruiter.md` — decides which advisers the council needs: scores them, hires new ones, rewrites or retires weak ones.
 - `geo.md` — RETIRED 2026-11-25 (overlap with experimenter; re-hire at ≥100 followers), see retired/.
 - `sound.md` — sound designer: audio of the reels (melody per split, ASMR), public-domain/own synth only (hired 2026-11-25).
+- `distribution.md` — reach outside the video: slots, dilution, Trial Reels, cross-posting, YouTube mirror, keyword captions (hired 2026-11-27).
 The Director may add, rewrite or retire advisers (new file here + note in decisions.md) when the account needs a different view.
 
 ## What counts as radical (allowed)

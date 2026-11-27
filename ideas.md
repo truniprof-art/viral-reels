@@ -1,5 +1,23 @@
 # Ideas backlog (newest on top; mark [done] when built)
 
+## 2026-11-27 (23:00) — council: why things hit + next ideas
+Why the top reels hit (lifetime): wheel pad4 58.6k / pad5 23.6k / pad3 8.9k, press 36.9k/27.9k, press funnel 33.4k, press_twin 14.2k, press wide 10.1k (11-27, 22% skip). Common: ONE big readable machine on a dark bg, a visible slam/cut per split, the tank packed at 0:00. Brand-new mechanisms 0.5–2.0k each (6/6). Did they bring follows? Unknown per post — days with a >20k hit got +9/+10 follows, i.e. reach brings a few follows, nothing carries over.
+### New mechanisms (09:47)
+- Pinball flipper bank: two flippers bat a ball into a ×2 bumper ring; flippers fire on a fixed timer (rhythm), tank below fills.
+- Rotating drum with a ×2 blade inside (cement-mixer look): each blade cut doubles; drum tilts out into the tank at the end.
+- Stamp line: a row of 3 small presses over a conveyor (factory look), each stamp ×2, the conveyor drops into the tank.
+### Hit variations (19:47/23:47/03:47 — near the breakouts)
+- press chunky (done 23:47 Ep33) → next: press funnel + chunky shapes (PBR 18) — two breakouts' traits combined.
+- wheel pad4 on a WIDER trough (only the trough width changes) — pad4 is the all-time hit.
+- wheel pad5 with the laser moved HIGHER (catches balls on the way up) — one parameter.
+### Concept track (15:47/21:47)
+- BIRTH-MONTH MACHINE (scout, from 11-29): 12 start balls JAN..DEC in the press/wheel hit, every copy keeps its parent's month, live month bars, end card 'WHOSE MONTH TOOK THE TANK?' + cumulative Month Cup. Identity ('my month') inside the reach machine; fairness-check the 12 slots.
+- MILLION TANK (scout): every episode continues the cumulative count of all finals '48,312 / 1,000,000'; finale = glass cracks at 1M. Reason to follow = be there for the finale (honest only if counts are real sums).
+- MULTIPLY LEAGUE (creative-director): 4 country colours multiply inside wheel_pad5; most balls at 0:00 wins (folded into birth-month as the next identity test).
+### Experiments
+- D15 Part 1 / Part 2 split (from 11-28): post the ending first, then Part 1 that points to it — profile visit lever.
+- Pentatonic ladder sound (sound adviser; after the D9 read 11-29): pitch rises with the count, start sting so 0–2 s are not silent.
+
 ## 2026-11-26 (23:00) — council: why things hit + next ideas
 Top lifetime still wheel pad4 58.2k (only reel with real shares), press family 36.9k/31.8k/27.9k, gates 24.7k. All simple single-machine builds, dark bg, big readable moving part. Today: no breakout; twin/dual/spin variations 1.4–3.3k (clutter, not action); geyser 41.7% skip. Follows: +7 (19→26). First-ever comment: 'Poland' on Country Race #1.
 CONCEPT TRACK (top = next):
