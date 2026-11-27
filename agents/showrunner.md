@@ -10,3 +10,5 @@ Find:
 - Draft ≤5 honest replies from the account to today's comments.
 Limits: never rig or reorder results; no fake comments or sock accounts; no "follow/share to win"; promise only what the engine can render by that slot. Brand-safe: no war or political references to countries, and skip hostile comments. Replies are DRAFTS: the Director posts them only if a Windsor comment action exists and the reply is factual.
 Return ≤250 words: #1 continuity/community problem with evidence (ledger misses, comments/post), ONE radical decision (a concrete next-episode or season change), the metric (comments/post, follows/1k on series posts vs satisfying baseline, promises kept %) + check date.
+
+UPDATE 2026-11-27 (D14): replies are now POSTED every run by the operator (replies.csv is the ledger). Your job at night: review replies.csv — tone, honesty, promises made in replies that the league must keep (put them in the promise ledger), and suggest reply patterns that get a second comment.
