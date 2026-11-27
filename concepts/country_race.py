@@ -20,6 +20,19 @@ OPENER = os.environ.get("OPENER", "")              # one short line over the fir
 LEAGUE = os.environ.get("LEAGUE", "")              # path to league.json -> end card shows standings after this race
 NEXT = os.environ.get("NEXT", "")                  # e.g. "RACE #3 TONIGHT"
 TITLE = os.environ.get("TITLE", "")
+# MAP features (Kolya 11-27: 'the ball that runs first wins ~90%' — measured 23/29 seeds: leader at 4 s wins).
+# BOOST pads (green chevrons: any ball crossing gets a speed kick along the ramp) and TRAFFIC LIGHTS (a barrier on a ramp
+# that closes/opens on a fixed timer — bunches the field, so an early lead is not safe). Pure physics + fixed timers, no rigging.
+NMIX = int(os.environ.get("NMIX", "0"))   # MIXER sections: a ramp replaced by a peg field (plinko) — reshuffles the order
+NBOOST = int(os.environ.get("NBOOST", "0")); NLIGHT = int(os.environ.get("NLIGHT", "0"))
+BOOSTV = float(os.environ.get("BOOSTV", "1500")); LPER = float(os.environ.get("LPER", "2.6")); LCLOSED = float(os.environ.get("LCLOSED", "1.3"))
+BOOSTS, LIGHTS = [], []
+MIXSET = set()
+def ramp_ends(i):
+    y = ramp_y(i)
+    return ((20, y), (860, y + DROP)) if i % 2 == 0 else ((1060, y), (220, y + DROP))
+def ramp_pt(i, u):
+    a, b = ramp_ends(i); return (a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u)
 TEAMS = os.environ.get("TEAMS", "USA,BRA,IND,GER,JPN,UKR,FRA,NGA").split(",")
 BG = (.06, .07, .13)
 INK = (1, 1, 1)
@@ -83,8 +96,15 @@ def build(seed):
     # start box with a gate
     seg((1060, TOP + 90), (190, TOP + 120), 12)
     gate = pymunk.Segment(st, (200, TOP + 30), (200, TOP + 115), 6); gate.elasticity = .3; sp.add(gate)
+    rm = random.Random(seed * 13 + 5); MIXR = set(rm.sample(range(2, NR - 2), NMIX)) if NMIX else set()
+    global MIXSET; MIXSET = MIXR
     for i in range(NR):
         y = ramp_y(i); drop = DROP
+        if i in MIXR:
+            for r_, py in enumerate(range(y - 40, y + DROP + 40, 92)):
+                for px in range(90 + (r_ % 2) * 65, 1010, 130):
+                    p = pymunk.Circle(st, 11, (px, py)); p.elasticity = .55; p.friction = .3; sp.add(p); deco.append(("mix", px, py, 11))
+            continue
         if i % 2 == 0: a, b = (20, y), (860, y + drop)
         else: a, b = (1060, y), (220, y + drop)
         seg(a, b, 12)
@@ -100,7 +120,7 @@ def build(seed):
     seg((20, FINISH_Y + 120), (1060, FINISH_Y + 120), 12, e=.1, f=.9)
     # spinners (kinematic bars) on 3 ramps
     spins = []
-    for i in rnd.sample(range(1, NR - 1), 4):
+    for i in rnd.sample([j for j in range(1, NR - 1) if j not in MIXSET], 4):
         y = ramp_y(i); cx = 540 + rnd.uniform(-120, 120); cy = y - 95 + (cx - (20 if i % 2 == 0 else 1060)) * 0 + 0
         # place above the ramp line at cx
         a, b = ((20, y), (860, y + DROP)) if i % 2 == 0 else ((1060, y), (220, y + DROP))
@@ -111,6 +131,17 @@ def build(seed):
     for k, code in enumerate(TEAMS):
         b = pymunk.Body(1, pymunk.moment_for_circle(1, 0, R)); b.position = (250 + slots[k] * 100 + rnd.uniform(-6, 6), TOP + 40 - (slots[k] % 2) * 40)
         c = pymunk.Circle(b, R); c.elasticity = .45; c.friction = .5; sp.add(b, c); balls.append(b)
+    BOOSTS.clear(); LIGHTS.clear()
+    rr = random.Random(seed * 7 + 1)
+    cand = [i for i in range(1, NR - 1) if i not in MIXSET and i - 1 not in MIXSET]; rr.shuffle(cand)
+    for i in cand[:NLIGHT]:
+        u = rr.uniform(.45, .7); x, y = ramp_pt(i, u)
+        sh = pymunk.Segment(st, (x, y - 130), (x, y - 8), 7); sh.elasticity = .2; sh.friction = .5
+        LIGHTS.append(dict(i=i, x=x, y=y, sh=sh, ph=rr.uniform(0, LPER), on=False))
+    for i in cand[NLIGHT:NLIGHT + NBOOST]:
+        u = rr.uniform(.2, .55); a, b = ramp_ends(i); L = math.hypot(b[0] - a[0], b[1] - a[1])
+        d = ((b[0] - a[0]) / L, (b[1] - a[1]) / L)
+        BOOSTS.append(dict(i=i, u0=u, u1=u + .16, d=d, p0=ramp_pt(i, u), p1=ramp_pt(i, u + .16)))
     return sp, gate, balls, segs, deco, spins
 
 def progress(b):
@@ -131,6 +162,23 @@ def simulate(seed):
     for f in range(nF):
         for _ in range(8):
             if t >= GO_SIM and gate in sp.shapes: sp.remove(gate); sounds.append((t, "gate"))
+            for Lg in LIGHTS:
+                closed = ((t + Lg["ph"]) % LPER) < LCLOSED
+                if closed and not Lg["on"]:
+                    if all(abs(b.position.x - Lg["x"]) > R + 10 or b.position.y < Lg["y"] - 140 - R or b.position.y > Lg["y"] + R for b in balls):
+                        sp.add(Lg["sh"]); Lg["on"] = True; sounds.append((t, "lclose"))
+                elif not closed and Lg["on"]:
+                    sp.remove(Lg["sh"]); Lg["on"] = False
+            for Bo in BOOSTS:
+                for k, b in enumerate(balls):
+                    x, y = b.position; (x0, y0), (x1, y1) = Bo["p0"], Bo["p1"]
+                    if min(x0, x1) <= x <= max(x0, x1):
+                        ly = y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+                        if -R - 30 < y - ly < 0:
+                            v = b.velocity; along = v[0] * Bo["d"][0] + v[1] * Bo["d"][1]
+                            if along < BOOSTV:
+                                b.velocity = (Bo["d"][0] * BOOSTV, Bo["d"][1] * BOOSTV)
+                                if t - Bo.get("last%d" % k, -9) > .5: sounds.append((t, "boost")); Bo["last%d" % k] = t
             if t < T_RACE_END + PRE: sp.step(dt)
             t += dt
             for k, b in enumerate(balls):
@@ -141,7 +189,7 @@ def simulate(seed):
             for k, b in enumerate(balls):
                 vx, vy = b.velocity; pv = frames[-1]["v"][k]
                 if abs(vx - pv[0]) + abs(vy - pv[1]) > 260: sounds.append((t, "tick%d" % k))
-        frames.append({"b": st, "v": [tuple(b.velocity) for b in balls], "s": [(kb.angle) for kb, L in spins], "p": [progress(b) for b in balls]})
+        frames.append({"b": st, "v": [tuple(b.velocity) for b in balls], "s": [(kb.angle) for kb, L in spins], "p": [progress(b) for b in balls], "L": [Lg["on"] for Lg in LIGHTS]})
     if PRE:
         off = int(PRE * FPS); frames = frames[off:]; fin = {k: v - PRE for k, v in fin.items()}
         sounds = [(te - PRE, kd) for te, kd in sounds if te - PRE >= 0]
@@ -207,8 +255,25 @@ def render(seed, out):
             c.set_source_rgb(.78, .8, .86); c.set_line_width(w); c.set_line_cap(cairo.LINE_CAP_ROUND); c.move_to(*a); c.line_to(*b); c.stroke()
         if t < GO_SIM - PRE:
             c.set_source_rgb(*GOLD); c.set_line_width(8); c.move_to(200, TOP + 30); c.line_to(200, TOP + 115); c.stroke()
+        for Bo in BOOSTS:
+            (x0, y0), (x1, y1) = Bo["p0"], Bo["p1"]; dx, dy = Bo["d"]; nx, ny = dy, -dx
+            if ny > 0: nx, ny = -nx, -ny
+            c.set_line_cap(cairo.LINE_CAP_ROUND); c.set_source_rgb(.2, .95, .45); c.set_line_width(16)
+            c.move_to(x0, y0); c.line_to(x1, y1); c.stroke()
+            for q in range(3):
+                u = (q + 1) / 4 + ((t * 2) % 1) * .0; cx_, cy_ = x0 + (x1 - x0) * u + nx * 34, y0 + (y1 - y0) * u + ny * 34
+                c.set_line_width(7); c.move_to(cx_ - dx * 14 + nx * 12, cy_ - dy * 14 + ny * 12); c.line_to(cx_ + dx * 6, cy_ + dy * 6)
+                c.line_to(cx_ - dx * 14 - nx * 12, cy_ - dy * 14 - ny * 12); c.stroke()
+            text(c, "BOOST", (x0 + x1) / 2 + nx * 80, (y0 + y1) / 2 + ny * 80, 30, (.2, .95, .45, .9), True, 3)
+        for Lg, on in zip(LIGHTS, fr.get("L", [])):
+            x, y = Lg["x"], Lg["y"]
+            if on:
+                c.set_source_rgb(.95, .2, .25); c.set_line_width(14); c.move_to(x, y - 130); c.line_to(x, y - 8); c.stroke()
+            c.set_source_rgb(.15, .15, .18); c.rectangle(x - 22, y - 205, 44, 70); c.fill()
+            c.set_source_rgb(*((.95, .2, .25) if on else (.3, .1, .1))); c.arc(x, y - 187, 13, 0, 7); c.fill()
+            c.set_source_rgb(*((.15, .3, .15) if on else (.2, .95, .45))); c.arc(x, y - 153, 13, 0, 7); c.fill()
         for kind, x, y, r in deco:
-            c.arc(x, y, r, 0, 7); c.set_source_rgb(*((.95, .35, .5) if kind == "bump" else (.6, .62, .7))); c.fill()
+            c.arc(x, y, r, 0, 7); c.set_source_rgb(*((.95, .35, .5) if kind == "bump" else (.35, .8, 1) if kind == "mix" else (.6, .62, .7))); c.fill()
         for (x, y, L), ang in zip(spins, fr["s"]):
             c.save(); c.translate(x, y); c.rotate(ang); c.set_source_rgb(*GOLD); c.set_line_width(18); c.set_line_cap(cairo.LINE_CAP_ROUND)
             c.move_to(-L, 0); c.line_to(L, 0); c.stroke(); c.arc(0, 0, 10, 0, 7); c.set_source_rgb(.2, .2, .25); c.fill(); c.restore()
@@ -316,6 +381,10 @@ def audio(sounds, fin, order, path):
             kk = int(kind[4:])
             if te - last.get(kk, -1) < .08: continue
             last[kk] = te; k = tt(.12); add(te, .12 * np.sin(2 * np.pi * notes[kk % len(notes)] * (1.5 if kk >= len(notes) else 1) * k) * np.exp(-k * 40))
+        elif kind == "boost":
+            k = tt(.25); add(te, .18 * np.sin(2 * np.pi * np.cumsum(400 + 1600 * k / .25) / sr) * np.exp(-k * 8))
+        elif kind == "lclose":
+            k = tt(.15); add(te, .12 * np.sin(2 * np.pi * 330 * k) * np.exp(-k * 20))
         elif kind == "gate":
             k = tt(.5); add(te, .4 * np.sin(2 * np.pi * 220 * k) * np.exp(-k * 6))
         elif kind.startswith("fin"):
