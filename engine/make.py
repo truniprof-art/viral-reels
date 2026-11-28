@@ -33,7 +33,7 @@ VARIANTS = {
     "blender": {"arm4": {}, "arm3": dict(NARM="3", ARM="200"), "arm6": dict(NARM="6")},
     "wheel":   {"pad6": {}, "pad4": dict(NP="4"), "pad8": dict(NP="8"), "small": dict(WR="280", CH0="1.4"), "pad3": dict(NP="3", LY="1120"), "pad5": dict(NP="5"), "pad4hi": dict(NP="4", LY="1040")},
     "gates":   {"g3": {}, "g4": dict(GY="850,1020,1190,1360", GACT="0,10,16,21"), "wide": dict(COLW="130"), "g2": dict(GY="960,1260", GACT="0,8", CH0="0.8")},
-    "press":   {"c1": "2.2,1.5,0.7", "c2": "2.0,1.4,0.65", "c3": "2.4,1.6,0.75", "funnel": "2.2,1.5,0.7", "wide": "2.2,1.5,0.7", "chunky": "2.2,1.5,0.7"},
+    "press":   {"c1": "2.2,1.5,0.7", "c2": "2.0,1.4,0.65", "c3": "2.4,1.6,0.75", "funnel": "2.2,1.5,0.7", "wide": "2.2,1.5,0.7", "chunky": "2.2,1.5,0.7", "narrow": "2.2,1.2,0.5"},
 }
 VLOG = os.path.join(HERE, "..", "variants.log")
 used = [l.split() for l in open(VLOG)] if os.path.exists(VLOG) else []
@@ -50,7 +50,8 @@ env = dict(os.environ, WORK=WORK, HUE=str(rnd.choice([0, 0, 40, 80, 140, 200, 26
 # press geometry variants (presssim2 env): funnel = steep V tank under a narrower slab, smaller shapes (2026-11-25)
 PRESS_ENV = {"funnel": dict(PX0="440", PX1="640", SLOPE_Y="1050", PBR="13", PBY0="980", MAXN="900"),
              "wide": dict(PX0="300", PX1="780", SLOPE_Y="1500", MAXN="900"),
-             "chunky": dict(PBR="19", MAXN="600")}   # 2026-11-27 23:47: base press, big chunky shapes (fills the glass with fewer pieces)
+             "chunky": dict(PBR="19", MAXN="600"),
+             "narrow": dict(PX0="470", PX1="610", PBR="13", MAXN="900")}   # chunky 2026-11-27 23:47: big shapes; narrow 2026-11-28 12:47: base glass, slab only 140 px wide + faster slams
 if kind == "press": env.update(PRESS_ENV.get(variant, {}))
 PY = [sys.executable, "-B"]
 
