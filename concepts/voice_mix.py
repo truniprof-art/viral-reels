@@ -1,40 +1,27 @@
-"""D17 VOICE COMMENTATOR: synthesise timed commentator lines and mix them over a rendered reel (music ducked under speech).
+"""D17 VOICE COMMENTATOR (D19: FREE local TTS only — ElevenLabs removed 2026-11-28 on Kolya's free-tools rule).
+Synthesise timed commentator lines and mix them over a rendered reel (music ducked under speech).
 Usage: python3 voice_mix.py LINES.json IN.mp4 OUT.mp4
-LINES.json = [{"t": 0.2, "text": "[excited] Race five!"}, ...]  (t = video seconds; each line must be TRUE to the frame at t)
-Voice: ElevenLabs premade library voice (never a clone of a real person), key ONLY from env ELEVENLABS_API_KEY.
-Without the key (or if the API fails) falls back to espeak-ng and prints a note."""
-import json, os, sys, subprocess, urllib.request, re
+LINES.json = [{"t": 0.2, "text": "The FINALE!"}, ...]  (t = video seconds; each line must be TRUE to the frame at t; [tags] are stripped)
+Voice: studio/tts.py — Kokoro-82M (Apache-2.0) -> Piper (commercial-safe voices) -> espeak-ng. No API keys, no network."""
+import json, os, sys, subprocess
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "studio"))
+import tts
 
-VOICE = os.environ.get("VOICE_ID", "IKne3meq5aSn9XLyUdCD")   # 'Charlie' (premade)
-MODEL = os.environ.get("VOICE_MODEL", "eleven_v3")
+VOICE = os.environ.get("VOICE", "kokoro:am_fenrir")   # energetic male caster
+SPEED = float(os.environ.get("VOICE_SPEED", "1.12"))
 MAXTEMPO = 1.15
 
 def sh(*a): return subprocess.run(a, check=True, capture_output=True, text=True).stdout
 
 def dur(p): return float(sh("ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", p))
 
-def tts_eleven(text, out):
-    key = os.environ["ELEVENLABS_API_KEY"]
-    body = json.dumps({"text": text, "model_id": MODEL, "voice_settings": {"stability": 0.0, "similarity_boost": 0.8}}).encode()
-    rq = urllib.request.Request(f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE}?output_format=mp3_44100_128", data=body,
-                                headers={"xi-api-key": key, "Content-Type": "application/json", "Accept": "audio/mpeg"})
-    with urllib.request.urlopen(rq, timeout=120) as r: open(out, "wb").write(r.read())
-
-def tts_espeak(text, out):
-    clean = re.sub(r"\[[^\]]*\]", "", text).strip()
-    sh("espeak-ng", "-v", "en-us", "-s", "175", "-w", out + ".wav", clean); sh("ffmpeg", "-y", "-loglevel", "error", "-i", out + ".wav", out)
-
 def main(lines_p, vin, vout):
-    lines = json.load(open(lines_p)); tmp = vout + "_vo"; os.makedirs(tmp, exist_ok=True); engine = "elevenlabs"
+    lines = json.load(open(lines_p)); tmp = vout + "_vo"; os.makedirs(tmp, exist_ok=True); engine = "cached"
     total = dur(vin); parts = []
     for i, L in enumerate(lines):
-        raw = f"{tmp}/l{i}.mp3"
+        raw = f"{tmp}/l{i}.wav"
         if not os.path.exists(raw):
-            try:
-                if not os.environ.get("ELEVENLABS_API_KEY"): raise RuntimeError("no key")
-                tts_eleven(L["text"], raw)
-            except Exception as e:
-                engine = "espeak-ng (fallback: %s)" % type(e).__name__; tts_espeak(L["text"], raw)
+            engine = tts.say(L["text"], raw, VOICE, SPEED)
         trim = f"{tmp}/t{i}.wav"   # trim leading/trailing silence
         sh("ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af",
            "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse",

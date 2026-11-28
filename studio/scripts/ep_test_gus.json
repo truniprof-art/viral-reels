@@ -1,0 +1,27 @@
+{
+ "tag": "EP 1 · THE GUS PROBLEM",
+ "hook": "RULE #1: NEVER STAND HERE",
+ "bg": "#151a2b", "accent": "#ffb830",
+ "cast": {
+  "GUS":  {"voice": "kokoro:am_puck", "color": "#ff8a2a", "speed": 1.05},
+  "GUS2": {"voice": "kokoro:am_puck", "color": "#ff8a2a", "speed": 1.12, "pitch": 3, "label": "GUS 2"},
+  "GUS3": {"voice": "kokoro:am_puck", "color": "#ff8a2a", "speed": 0.95, "pitch": -3, "label": "GUS 3"}
+ },
+ "stage": {"GUS": 540},
+ "beats": [
+  {"say": "GUS", "text": "Day one at the factory. Rule number one: never stand under the press."},
+  {"act": "slam", "target": "GUS", "spawn": "GUS2", "after": {"GUS": 300, "GUS2": 780}},
+  {"say": "GUS", "text": "Okay. Small update. I stood under the press.", "look": "GUS2"},
+  {"say": "GUS2", "text": "Hi! I'm also Gus. I have all your memories."},
+  {"say": "GUS", "text": "Even the embarrassing ones?"},
+  {"say": "GUS2", "text": "Especially the embarrassing ones."},
+  {"say": "GUS", "text": "This factory is only big enough for one Gus."},
+  {"say": "GUS2", "text": "Totally agree. Bye, Gus."},
+  {"act": "move", "to": {"GUS": 540, "GUS2": 700}, "dur": 0.5},
+  {"act": "slam", "target": "GUS", "spawn": "GUS3", "after": {"GUS": 200, "GUS2": 880, "GUS3": 540}},
+  {"say": "GUS3", "text": "Hello. Did I miss the meeting?"},
+  {"say": "GUS2", "text": "This is going to get crowded.", "look": "GUS3"}
+ ],
+ "endcard": ["HOW MANY GUSES BY EP 5?", "comment your guess"],
+ "endcard_dur": 2.6
+}
