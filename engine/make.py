@@ -32,7 +32,7 @@ VARIANTS = {
                 "v4cw": dict(NV="4", PTH="20", ACT="11,0,14,17")},
     "blender": {"arm4": {}, "arm3": dict(NARM="3", ARM="200"), "arm6": dict(NARM="6")},
     "wheel":   {"pad6": {}, "pad4": dict(NP="4"), "pad8": dict(NP="8"), "small": dict(WR="280", CH0="1.4"), "pad3": dict(NP="3", LY="1120"), "pad5": dict(NP="5"), "pad4hi": dict(NP="4", LY="1040")},
-    "gates":   {"g3": {}, "g4": dict(GY="850,1020,1190,1360", GACT="0,10,16,21"), "wide": dict(COLW="130"), "g2": dict(GY="960,1260", GACT="0,8", CH0="0.8")},
+    "gates":   {"g3": {}, "g4": dict(GY="850,1020,1190,1360", GACT="0,10,16,21"), "wide": dict(COLW="130"), "g2": dict(GY="960,1260", GACT="0,8", CH0="0.8"), "bucket": dict(PSP="130", V1="1100")},
     "press":   {"c1": "2.2,1.5,0.7", "c2": "2.0,1.4,0.65", "c3": "2.4,1.6,0.75", "funnel": "2.2,1.5,0.7", "wide": "2.2,1.5,0.7", "chunky": "2.2,1.5,0.7", "narrow": "2.2,1.2,0.5"},
 }
 VLOG = os.path.join(HERE, "..", "variants.log")
