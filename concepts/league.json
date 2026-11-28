@@ -89,18 +89,37 @@
    "media_id": "18422992843085684",
    "story_id": "18129546812487326",
    "prompt_comment_id": "18161023681502554"
+  },
+  {
+   "race": 5,
+   "ep": 38,
+   "date": "2026-11-28 15:47",
+   "seed": 33,
+   "env": "START=drum MIXLATE=1 PRE=3.6 GO_SIM=4.0 RACE_END=36 NRAMPS=11 NBOOST=2 NLIGHT=2 NMIX=2 NBUMP=2 NSPIN=7 G=2600 DROP=200 TEAMS=BRA,IND,NGA,UKR,GER,JPN,FRA,USA,POL (FAIR MAP, spinner map; seed chosen by rule: max lead changes with margin<1 s and >=7 finishers; voice commentator D17)",
+   "standings": [
+    "UKR",
+    "NGA",
+    "JPN",
+    "GER",
+    "USA",
+    "BRA",
+    "FRA",
+    "POL",
+    "IND"
+   ],
+   "media_id": "17978313987153580"
   }
  ],
  "table": {
-  "BRA": 27,
+  "UKR": 32,
+  "NGA": 31,
+  "BRA": 30,
+  "GER": 25,
   "IND": 24,
-  "NGA": 23,
-  "UKR": 22,
-  "GER": 20,
-  "USA": 13,
-  "JPN": 13,
-  "POL": 8,
-  "FRA": 6
+  "JPN": 19,
+  "USA": 17,
+  "POL": 9,
+  "FRA": 8
  },
  "wildcards_pending": [],
  "wildcards_joined": [
