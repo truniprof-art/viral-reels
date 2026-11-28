@@ -120,5 +120,11 @@
   "name": "portal",
   "min_final": 500,
   "env": {}
+ },
+ "tumbler": {
+  "file": "tumbler.py",
+  "name": "tumbler",
+  "min_final": 500,
+  "env": {}
  }
 }

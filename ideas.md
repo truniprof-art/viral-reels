@@ -4,7 +4,7 @@
 Why the top reels hit (lifetime): wheel pad4 58.6k / pad5 23.6k / pad3 8.9k, press 36.9k/27.9k, press funnel 33.4k, press_twin 14.2k, press wide 10.1k (11-27, 22% skip). Common: ONE big readable machine on a dark bg, a visible slam/cut per split, the tank packed at 0:00. Brand-new mechanisms 0.5–2.0k each (6/6). Did they bring follows? Unknown per post — days with a >20k hit got +9/+10 follows, i.e. reach brings a few follows, nothing carries over.
 ### New mechanisms (09:47)
 - Pinball flipper bank: two flippers bat a ball into a ×2 bumper ring; flippers fire on a fixed timer (rhythm), tank below fills.
-- Rotating drum with a ×2 blade inside (cement-mixer look): each blade cut doubles; drum tilts out into the tank at the end.
+- [done 2026-11-28 09:47 Ep36: tumbler — ×2 laser instead of a blade] Rotating drum with a ×2 blade inside (cement-mixer look): each blade cut doubles; drum tilts out into the tank at the end.
 - Stamp line: a row of 3 small presses over a conveyor (factory look), each stamp ×2, the conveyor drops into the tank.
 ### Hit variations (19:47/23:47/03:47 — near the breakouts)
 - press chunky (done 23:47 Ep33) → next: press funnel + chunky shapes (PBR 18) — two breakouts' traits combined.
