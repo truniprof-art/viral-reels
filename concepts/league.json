@@ -108,17 +108,36 @@
     "IND"
    ],
    "media_id": "17978313987153580"
+  },
+  {
+   "race": 6,
+   "ep": 40,
+   "date": "2026-11-28 21:47",
+   "seed": 4,
+   "env": "START=drum MIXLATE=1 PRE=3.6 GO_SIM=4.0 RACE_END=36 NRAMPS=11 NBOOST=3 NLIGHT=1 NMIX=3 NBUMP=4 NSPIN=4 G=2600 DROP=200 TEAMS=BRA,IND,NGA,UKR,GER,JPN,FRA,USA,POL (FAIR MAP, finale mixer map; seed 4 chosen by rule: max lead changes (15) with margin<1 s and >=7 finishers; voice commentator D17; FINALE=1 end card)",
+   "standings": [
+    "NGA",
+    "BRA",
+    "UKR",
+    "USA",
+    "IND",
+    "POL",
+    "GER",
+    "JPN",
+    "FRA"
+   ],
+   "media_id": "18044281172841961"
   }
  ],
  "table": {
-  "UKR": 32,
-  "NGA": 31,
-  "BRA": 30,
-  "GER": 25,
-  "IND": 24,
-  "JPN": 19,
-  "USA": 17,
-  "POL": 9,
+  "NGA": 41,
+  "UKR": 38,
+  "BRA": 38,
+  "IND": 28,
+  "GER": 27,
+  "USA": 22,
+  "JPN": 20,
+  "POL": 12,
   "FRA": 8
  },
  "wildcards_pending": [],
@@ -128,5 +147,7 @@
    "requested_by": "comment on Ep24 (it was Kolya's own seed comment; framed only as 'requested in the comments')",
    "joined": "race 2"
   }
- ]
+ ],
+ "champion": "NGA",
+ "status": "Season 1 finished 2026-11-28 (D16/D18); no Season 2 scheduled"
 }

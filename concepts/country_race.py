@@ -20,6 +20,7 @@ OPENER = os.environ.get("OPENER", "")              # one short line over the fir
 LEAGUE = os.environ.get("LEAGUE", "")              # path to league.json -> end card shows standings after this race
 NEXT = os.environ.get("NEXT", "")                  # e.g. "RACE #3 TONIGHT"
 TITLE = os.environ.get("TITLE", "")
+FINALE = os.environ.get("FINALE", "")              # season finale end card: champion + final table, no wildcard promise
 # MAP features (Kolya 11-27: 'the ball that runs first wins ~90%' — measured 23/29 seeds: leader at 4 s wins).
 # BOOST pads (green chevrons: any ball crossing gets a speed kick along the ramp) and TRAFFIC LIGHTS (a barrier on a ramp
 # that closes/opens on a fixed timer — bunches the field, so an early lead is not safe). Pure physics + fixed timers, no rigging.
@@ -367,7 +368,7 @@ def render(seed, out):
             u = t - 12; a = min(1, u / .25, (2.2 - u) / .3)
             c.set_source_rgba(*GOLD, .93 * a); c.rectangle(110, 1712, 860, 110); c.fill()
             text(c, "FOLLOW @CRUSH.MULTIPLY", 540, 1762, 42, (.08, .08, .1, a), True, 4)
-            text(c, ("comment your country — it joins the league" if LEAGUE else "comment your country — it can race next"), 540, 1804, 30, (.08, .08, .1, .85 * a), False, 1)
+            text(c, ("finale · the title is decided right here" if FINALE else "comment your country — it joins the league" if LEAGUE else "comment your country — it can race next"), 540, 1804, 30, (.08, .08, .1, .85 * a), False, 1)
         # finish flash banners
         for p, k in enumerate(sorted(fin, key=fin.get)[:3]):
             if fin[k] <= t < fin[k] + 1.6 and t < T_RACE_END:
@@ -380,9 +381,16 @@ def render(seed, out):
             c.set_source_rgba(*BG, .92 * a); c.paint()
             if EP: text(c, f"EPISODE {EP} · WORLD BALL LEAGUE · RACE #{RACE}", 540, 170, 30, (1, 1, 1, .55 * a), True, 3)
             big = ball_sprite(TEAMS[order[0]], 80); c.set_source_surface(big, 300 - big.get_width() / 2, 215); c.paint_with_alpha(a)
-            text(c, "RACE WINNER", 640, 290, 38, (1, 1, 1, .75 * a), True, 6, "l")
-            text(c, TEAMS[order[0]], 640, 390, 100, (*GOLD, a), True, 6, "l")
-            text(c, "LEAGUE TABLE", 540, 520, 46, (1, 1, 1, .9 * a), True, 8)
+            if FINALE:
+                c.set_source_rgba(*BG, a); c.rectangle(0, 200, W, 230); c.fill()
+                big = ball_sprite(TABLE[0][0], 80); c.set_source_surface(big, 300 - big.get_width() / 2, 215); c.paint_with_alpha(a)
+                text(c, "SEASON 1 CHAMPION", 640, 290, 38, (1, 1, 1, .75 * a), True, 4, "l")
+                text(c, TABLE[0][0], 640, 390, 100, (*GOLD, a), True, 6, "l")
+                text(c, f"FINAL TABLE · RACE 6 WON BY {TEAMS[order[0]]}", 540, 520, 40, (1, 1, 1, .9 * a), True, 4)
+            else:
+                text(c, "RACE WINNER", 640, 290, 38, (1, 1, 1, .75 * a), True, 6, "l")
+                text(c, TEAMS[order[0]], 640, 390, 100, (*GOLD, a), True, 6, "l")
+                text(c, "LEAGUE TABLE", 540, 520, 46, (1, 1, 1, .9 * a), True, 8)
             for j, (code, pts, gain) in enumerate(TABLE[:5]):
                 y0 = 600 + j * 92; c.set_source_rgba(1, 1, 1, (.10 if j else .18) * a); c.rectangle(150, y0 - 10, 780, 80); c.fill()
                 text(c, f"{j + 1}", 200, y0 + 46, 44, (1, 1, 1, .6 * a), True)
@@ -391,8 +399,8 @@ def render(seed, out):
                 if gain: text(c, f"+{gain}", 700, y0 + 46, 34, (.55, .9, .6, a), True, 0, "r")
                 text(c, f"{pts} PTS", 900, y0 + 46, 44, (1, 1, 1, a), True, 1, "r")
             c.set_source_rgba(*GOLD, a); c.rectangle(80, 1100, 920, 360); c.fill()
-            text(c, "COMMENT YOUR COUNTRY", 540, 1180, 58, (.08, .08, .1, a), True, 3)
-            text(c, "requested countries join as wildcards", 540, 1240, 36, (.08, .08, .1, a), False, 1)
+            text(c, "SEASON 1 IS OVER" if FINALE else "COMMENT YOUR COUNTRY", 540, 1180, 58, (.08, .08, .1, a), True, 3)
+            text(c, "did your country make the top 3?" if FINALE else "requested countries join as wildcards", 540, 1240, 36, (.08, .08, .1, a), False, 1)
             text(c, NEXT or f"RACE #{int(RACE) + 1} NEXT", 540, 1320, 52, (.08, .08, .1, a), True, 3)
             text(c, "FOLLOW @CRUSH.MULTIPLY", 540, 1410, 48, (.08, .08, .1, a), True, 4)
         elif t >= T_RACE_END:

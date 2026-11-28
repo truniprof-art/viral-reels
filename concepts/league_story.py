@@ -13,7 +13,7 @@ rows = sorted(lg["table"].items(), key=lambda kv: (-kv[1], -gain.get(kv[0], 0)))
 s = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H); c = cairo.Context(s)
 c.set_source_rgb(*BG); c.paint()
 text(c, "WORLD BALL LEAGUE", 540, 250, 76, (*GOLD, 1), True, 4)
-text(c, f"TABLE AFTER RACE #{n}", 540, 330, 44, (1, 1, 1, .85), True, 6)
+text(c, "SEASON 1 · FINAL TABLE" if lg.get("champion") else f"TABLE AFTER RACE #{n}", 540, 330, 44, (1, 1, 1, .85), True, 6)
 w = last["standings"][0]; sp = ball_sprite(w, 46); c.set_source_surface(sp, 300 - sp.get_width() / 2, 380); c.paint()
 text(c, f"RACE #{n} WINNER: {w}", 380, 440, 44, (1, 1, 1, 1), True, 2, "l")
 y = 540
@@ -27,7 +27,9 @@ for j, (code, pts) in enumerate(rows[:10]):
     y += 108
 c.set_source_rgba(*GOLD, 1); c.rectangle(80, y + 40, 920, 250); c.fill()
 text(c, nxt, 540, y + 125, 56, (.08, .08, .1, 1), True, 3)
-text(c, "comment your country under the race reel", 540, y + 190, 36, (.08, .08, .1, 1), False, 1)
-text(c, "requested countries join as wildcards", 540, y + 245, 36, (.08, .08, .1, 1), False, 1)
+L2, L3 = (("a brand-new series starts tomorrow", "follow @crush.multiply") if lg.get("champion") else
+          ("comment your country under the race reel", "requested countries join as wildcards"))
+text(c, L2, 540, y + 190, 36, (.08, .08, .1, 1), False, 1)
+text(c, L3, 540, y + 245, 36, (.08, .08, .1, 1), False, 1)
 Image.frombuffer("RGBA", (W, H), bytes(s.get_data()), "raw", "BGRA", 0, 1).convert("RGB").save(out, quality=92)
 print(out)
